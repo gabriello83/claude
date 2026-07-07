@@ -13,24 +13,18 @@ descubrimiento (`01-cuestionario-descubrimiento.md`).
 | D6 | Motor de workflow | **Flujo fijo en v1** (Comercial → Técnico → Administración → Ruta) con tareas, responsables y estados. El operador configura direcciones de correo, plantillas y roles; motor configurable en v2. |
 | D7 | Idioma de correos y documentos | **Idioma del operador**: todos los correos y PDF salen en el idioma configurado por la empresa de vending (interfaz disponible en ES/EN/IT/FR). |
 | D8 | Import de tarifas | **Plantilla Excel propia**, descargable desde la app (productos, selecciones de café, precios, combos, gratuidades), con validación de errores al subirla. |
+| D9 | Fabricantes | Soportar de inicio **Sanden Vendo, Rhea, Bianchi, Evoca/Necta, Azkoyen y Jofemar**. El cliente entregará un **listado de fabricantes y modelos** para cargar como catálogo inicial; el operador podrá añadir modelos propios. |
+| D10 | Gratuidades y combos | **Solo documentar en v1**: la app registra las condiciones pactadas (gratuidades por usuario/día, día de café gratis, lotes de Navidad, combos) y las incluye en la hoja de configuración para el técnico. No controla ni liquida consumos. |
+| D11 | Canon | La app **no calcula ni liquida el canon**. Solo registra que el cliente tendrá canon (fijo/variable/mixto y sus condiciones) e **informa a administración** dentro del workflow. |
+| D12 | Rutas, reponedor y técnico | **Sin maestro de rutas**: la ruta, el reponedor y el técnico asignados se indican como texto en el correo de alta en ruta. |
+| D13 | Módulo comercial | **La app no crea ofertas.** El workflow empieza cuando el comercial **registra una oferta ya ganada** (cliente, datos económicos, tarifas, máquinas, canon). No hay CRM, ni estados de oferta, ni aprobaciones, ni generación de PDF de oferta. |
+| D14 | Licitaciones | Las ofertas públicas se registran igual que las privadas, **solo con sus datos económicos** (marcando el tipo). La documentación formal de la licitación se gestiona fuera de la app. |
+| D15 | Dimensionamiento | Operador **mediano** (500–5.000 máquinas, decenas de instalaciones/mes), **con un operador real pilotando la v1**. |
+| D16 | Plazo | **Sin plazo cerrado**: prioridad a la calidad y al alcance completo del MVP. |
 
-## Preguntas aún abiertas (necesarias antes del diseño funcional)
+## Pendiente de recibir del cliente
 
-Referencias al cuestionario `01-cuestionario-descubrimiento.md`:
-
-1. **Fabricantes de máquinas a soportar de inicio** (p. 16): Necta/Evoca, Azkoyen,
-   Jofemar, Bianchi, Rheavendors, Crane… y si se pueden obtener sus plantillas de
-   bandejas para el editor visual.
-2. **Roles y aprobaciones** (p. 6, 9): confirmar la lista de roles y si dirección
-   debe aprobar ofertas por encima de un umbral.
-3. **Detalle de gratuidades y combos** (p. 27–28): cómo se identifican los usuarios
-   (llave, tarjeta, app) y a qué precio se factura el café gratuito al cliente.
-4. **Canon variable** (p. 31–32): de dónde salen las cifras de ventas en v1 si no
-   hay telemetría integrada (registro manual de recaudaciones).
-5. **Maestro de rutas** (p. 43): si las rutas/reponedores/técnicos se mantienen en
-   la app o solo se referencian en el correo de alta en ruta.
-6. **Ofertas públicas** (p. 10): si hay que gestionar requisitos formales de
-   licitación (plazos, documentación) o solo los datos económicos.
-7. **Volúmenes y piloto** (p. 5, 56): nº de máquinas e instalaciones/mes de un
-   operador tipo, y si hay un operador real para pilotar la v1.
-8. **Plazo y presupuesto objetivo** (p. 58).
+- **Listado de fabricantes y modelos** de máquinas (D9) con nº de bandejas,
+  espirales por bandeja y selecciones, para cargar el catálogo inicial del
+  editor de planogramas.
+- Datos del **operador piloto** (D15) cuando esté confirmado.
