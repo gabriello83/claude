@@ -5,7 +5,7 @@ descubrimiento (`01-cuestionario-descubrimiento.md`).
 
 | # | Tema | Decisión |
 |---|---|---|
-| D1 | Despliegue y modelo de negocio | **SaaS multi-tenant**: una plataforma en la nube, cada operador de vending es un tenant aislado, modelo de suscripción. |
+| D1 | Despliegue y modelo de negocio | **SaaS multi-tenant**: una plataforma en la nube, cada operador de vending es un tenant aislado. Precio: **compra única inicial + mantenimiento**. Mercado inicial: **España**; moneda EUR, formatos de fecha/número por región. Marca: **DIGIVEND** (nombre de producto por decidir). |
 | D2 | Alcance de la v1 | **MVP del workflow**: ofertas, máquinas, planograma con hoja de taller, import Excel de tarifas, canon, correos configurables y flujo Comercial → Técnico → Administración → Ruta. Facturación e integraciones en v2. |
 | D3 | Integraciones en v1 | **Solo correo**: telemetría, monederos y sistemas de pago se registran como datos; toda la coordinación sale por correos con plantillas. Integraciones reales (telemetría, ERP, pagos) en v2. |
 | D4 | Plataforma | **Web responsive / PWA**: una sola aplicación web usable en escritorio y móvil, instalable como PWA. Sin app nativa. |
@@ -13,18 +13,31 @@ descubrimiento (`01-cuestionario-descubrimiento.md`).
 | D6 | Motor de workflow | **Flujo fijo en v1** (Comercial → Técnico → Administración → Ruta) con tareas, responsables y estados. El operador configura direcciones de correo, plantillas y roles; motor configurable en v2. |
 | D7 | Idioma de correos y documentos | **Idioma del operador**: todos los correos y PDF salen en el idioma configurado por la empresa de vending (interfaz disponible en ES/EN/IT/FR). |
 | D8 | Import de tarifas | **Plantilla Excel propia**, descargable desde la app (productos, selecciones de café, precios, combos, gratuidades), con validación de errores al subirla. |
-| D9 | Fabricantes | Soportar de inicio **Sanden Vendo, Rhea, Bianchi, Evoca/Necta, Azkoyen y Jofemar**. El cliente entregará un **listado de fabricantes y modelos** para cargar como catálogo inicial; el operador podrá añadir modelos propios. |
+| D9 | Fabricantes | Soportar de inicio **Sanden Vendo, Rhea, Bianchi, Evoca/Necta, Azkoyen y Jofemar**. El cliente **ya dispone del catálogo** de fabricantes y modelos (bandejas, espirales, selecciones) y lo entregará para cargarlo como catálogo inicial; el operador podrá añadir modelos propios. |
 | D10 | Gratuidades y combos | **Solo documentar en v1**: la app registra las condiciones pactadas (gratuidades por usuario/día, día de café gratis, lotes de Navidad, combos) y las incluye en la hoja de configuración para el técnico. No controla ni liquida consumos. |
 | D11 | Canon | La app **no calcula ni liquida el canon**. Solo registra que el cliente tendrá canon (fijo/variable/mixto y sus condiciones) e **informa a administración** dentro del workflow. |
 | D12 | Rutas, reponedor y técnico | **Sin maestro de rutas**: la ruta, el reponedor y el técnico asignados se indican como texto en el correo de alta en ruta. |
 | D13 | Módulo comercial | **La app no crea ofertas.** El workflow empieza cuando el comercial **registra una oferta ya ganada** (cliente, datos económicos, tarifas, máquinas, canon). No hay CRM, ni estados de oferta, ni aprobaciones, ni generación de PDF de oferta. |
 | D14 | Licitaciones | Las ofertas públicas se registran igual que las privadas, **solo con sus datos económicos** (marcando el tipo). La documentación formal de la licitación se gestiona fuera de la app. |
-| D15 | Dimensionamiento | Operador **mediano** (500–5.000 máquinas, decenas de instalaciones/mes), **con un operador real pilotando la v1**. |
+| D15 | Dimensionamiento | Operador piloto real confirmado: **~4.000 máquinas, ~5 instalaciones/mes, ~120 usuarios**. |
 | D16 | Plazo | **Sin plazo cerrado**: prioridad a la calidad y al alcance completo del MVP. |
+| D17 | Roles ampliados | Añadir **Dirección** como rol, con **flujo de aprobación** (alcance exacto a concretar: qué aprueba y con qué umbrales). El instalador puede ser **interno o externo**. Los **reponedores y técnicos de campo no usan la app** ni reciben información directa: solo se les referencia en el correo de alta en ruta. |
+| D18 | Pedido a proveedores | El correo de máquinas nuevas es una **solicitud de disponibilidad** (no pedido formal) **con seguimiento de la fecha de entrega**. Si se opta por máquinas usadas, se genera una **petición al servicio técnico**, que puede **proponer un modelo alternativo**. Los periféricos nuevos (monederos, lectores de pago, billeteros, telemetría) también se solicitan a proveedores. |
+| D19 | Planograma como módulo | El editor visual de planogramas es un **módulo licenciable por separado**. Espirales **simple, doble y triple**. Para máquinas nuevas se **envía el planograma al fabricante** (solo tipos de espirales y huecos). Las **reglas de creación de planogramas** se definirán con el cliente. Optimización del planograma según ventas/reposiciones: **v2**. |
+| D20 | Tarifas avanzadas | Además del import Excel: posibilidad de tarifas por **franja horaria y por colectivo** (empleado/visitante), **vigencias con histórico** y **revisión por IPC** (subida por importe fijo o porcentaje, con **redondeo a 0,05 €** para el pago en efectivo). |
+| D21 | Máquinas usadas | Datos mínimos: nº de serie/matrícula, nº de monedero y **contador de servicios**. |
+| D22 | Alcance v1 ampliado | Además de la instalación, la v1 cubre los workflows de **retirada de máquinas, sustitución, cambio de planograma y subida de precios**. |
+| D23 | Operaciones | Las rutas se gestionan en **VendCloud**: la app solo envía el correo de alta en ruta, y ese envío **cierra el workflow**. El supervisor recibe el aviso para **rellenar el ERP**, con una tarea de verificación en la app. Sin vista de calendario en v1. Los recordatorios de tareas llegan **por correo**. Panel de control de instalaciones en curso y auditoría completa: **sí**. |
+| D24 | Tecnología | Autenticación con **usuario/contraseña propia** (sin SSO). **Migración inicial desde Excel**. El cliente ya tiene la app **"Visita Comercial"** con datos en **Firebase** (checklist de instalación con fotos podría venir de ahí) y cuenta también con usuario de AWS; la recomendación de plataforma de hosting queda pendiente de la propuesta técnica. |
 
-## Pendiente de recibir del cliente
+## Pendiente de recibir del cliente / por concretar
 
-- **Listado de fabricantes y modelos** de máquinas (D9) con nº de bandejas,
-  espirales por bandeja y selecciones, para cargar el catálogo inicial del
-  editor de planogramas.
-- Datos del **operador piloto** (D15) cuando esté confirmado.
+- **Listado de fabricantes y modelos** (D9): Excel con nº de bandejas, espirales
+  por bandeja y selecciones, para cargar el catálogo inicial.
+- **Alcance de la aprobación de Dirección** (D17): qué aprueba (¿el expediente al
+  registrarlo? ¿condiciones económicas?) y con qué umbrales.
+- **Reglas de creación de planogramas** (D19).
+- **Acceso a la app "Visita Comercial"** y su estructura de datos en Firebase
+  (D24) para valorar la integración del checklist de instalación.
+- **Recomendación de hosting** (D24): Firebase vs AWS — se resolverá en la
+  propuesta técnica.
