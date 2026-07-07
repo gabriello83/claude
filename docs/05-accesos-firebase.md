@@ -4,6 +4,44 @@ Objetivo: valorar la integración del checklist de instalación con fotos (D24)
 y decidir el hosting de DIGIVEND. Con acceso de **solo lectura** es suficiente
 para esta fase.
 
+## Información ya recibida (2026-07-07)
+
+Del cliente, vía captura de la consola y configuración de la app web:
+
+- **Proyecto**: "Serunion Vending APP", ID `vending-care-tracker`
+  (nº 124512181992).
+- **Plan de facturación**: **Blaze** (pago por uso) → Cloud Functions
+  disponibles. ✔ (punto 5 resuelto)
+- **Productos en uso**: **Cloud Firestore**, **Hosting**, **Authentication**,
+  **App Check** (y Analytics en la app web). Storage:
+  `vending-care-tracker.firebasestorage.app`. ✔ (punto 3 casi resuelto)
+- **Apps web existentes**: "Atención al cliente" y "Visitas comerciales",
+  ambas con Firebase Hosting vinculado.
+- Configuración web de la app disponible (apiKey no es un secreto en
+  Firebase, pero no se versiona aquí por higiene; la protección real son las
+  **reglas de seguridad** y App Check).
+
+### Consecuencia: recomendación de plataforma
+
+Con Firestore + Hosting + Auth + App Check ya en producción y plan Blaze
+activo, **se recomienda Firebase como plataforma de DIGIVEND** (mismo
+ecosistema que las apps existentes, integración directa con "Visitas
+comerciales", sin duplicar infraestructura en AWS). Queda pendiente validar
+la **región** del proyecto por RGPD.
+
+## Qué falta por recibir
+
+1. **Región** del proyecto (Firestore → pestaña "Datos": aparece la ubicación,
+   p. ej. `eur3` o `europe-west1`).
+2. **Invitación como Viewer** a la consola (Usuarios y permisos) cuando
+   arranque el desarrollo, al correo del equipo que se designe.
+3. **Estructura de Firestore**: nombres de las colecciones y un documento de
+   ejemplo (anonimizado) de una visita/checklist de "Visitas comerciales".
+   Con una captura de la pestaña *Firestore → Datos* es suficiente.
+4. **Método de Authentication** usado (¿email/contraseña?).
+5. ¿Hay **Cloud Functions** desplegadas actualmente?
+6. Contacto del desarrollador de las apps existentes, si lo hay.
+
 ## Qué necesitamos
 
 1. **ID del proyecto Firebase** (o los IDs, si hay proyectos separados de
