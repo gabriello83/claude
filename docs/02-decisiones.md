@@ -21,7 +21,7 @@ descubrimiento (`01-cuestionario-descubrimiento.md`).
 | D14 | Licitaciones | Las ofertas públicas se registran igual que las privadas, **solo con sus datos económicos** (marcando el tipo). La documentación formal de la licitación se gestiona fuera de la app. |
 | D15 | Dimensionamiento | Operador piloto real confirmado: **~4.000 máquinas, ~5 instalaciones/mes, ~120 usuarios**. |
 | D16 | Plazo | **Sin plazo cerrado**: prioridad a la calidad y al alcance completo del MVP. |
-| D17 | Roles ampliados | Añadir **Dirección** como rol, con **flujo de aprobación** (alcance exacto a concretar: qué aprueba y con qué umbrales). El instalador puede ser **interno o externo**. Los **reponedores y técnicos de campo no usan la app** ni reciben información directa: solo se les referencia en el correo de alta en ruta. |
+| D17 | Roles ampliados | Añadir **Dirección** como rol: **puede revisar todos los pasos** de cualquier expediente (visibilidad y aprobación transversal). El instalador puede ser **interno o externo**. Los **reponedores y técnicos de campo no usan la app** ni reciben información directa: solo se les referencia en el correo de alta en ruta. |
 | D18 | Pedido a proveedores | El correo de máquinas nuevas es una **solicitud de disponibilidad** (no pedido formal) **con seguimiento de la fecha de entrega**. Si se opta por máquinas usadas, se genera una **petición al servicio técnico**, que puede **proponer un modelo alternativo**. Los periféricos nuevos (monederos, lectores de pago, billeteros, telemetría) también se solicitan a proveedores. |
 | D19 | Planograma como módulo | El editor visual de planogramas es un **módulo licenciable por separado**. Espirales **simple, doble y triple**. Para máquinas nuevas se **envía el planograma al fabricante** (solo tipos de espirales y huecos). Las **reglas de creación de planogramas** se definirán con el cliente. Optimización del planograma según ventas/reposiciones: **v2**. |
 | D20 | Tarifas avanzadas | Además del import Excel: posibilidad de tarifas por **franja horaria y por colectivo** (empleado/visitante), **vigencias con histórico** y **revisión por IPC** (subida por importe fijo o porcentaje, con **redondeo a 0,05 €** para el pago en efectivo). |
@@ -29,15 +29,18 @@ descubrimiento (`01-cuestionario-descubrimiento.md`).
 | D22 | Alcance v1 ampliado | Además de la instalación, la v1 cubre los workflows de **retirada de máquinas, sustitución, cambio de planograma y subida de precios**. |
 | D23 | Operaciones | Las rutas se gestionan en **VendCloud**: la app solo envía el correo de alta en ruta, y ese envío **cierra el workflow**. El supervisor recibe el aviso para **rellenar el ERP**, con una tarea de verificación en la app. Sin vista de calendario en v1. Los recordatorios de tareas llegan **por correo**. Panel de control de instalaciones en curso y auditoría completa: **sí**. |
 | D24 | Tecnología | Autenticación con **usuario/contraseña propia** (sin SSO). **Migración inicial desde Excel**. El cliente ya tiene la app **"Visita Comercial"** con datos en **Firebase** (checklist de instalación con fotos podría venir de ahí) y cuenta también con usuario de AWS; la recomendación de plataforma de hosting queda pendiente de la propuesta técnica. |
+| D25 | Propuesta de inversión | Al **crear un cliente nuevo** se informa a administración y se le **pregunta si existe una propuesta de inversión**; en caso afirmativo se registran sus detalles (importe y partidas). El expediente acumula los **costes reales** (máquinas, periféricos, equipamiento, instalación) y **controla que el coste total no supere la propuesta de inversión**, avisando si se excede. |
+| D26 | Equipamiento adicional | Además de máquinas, el cliente puede pedir **muebles, panelados, microondas, fuentes de agua…** Cada elemento tiene **proveedor y coste**, se solicita por correo como las máquinas (D18) y computa en el control de inversión (D25). Sin planograma. |
+| D27 | Catálogo recibido | El cliente ha entregado el **listado de tipos de máquina** (202 tipos, 10 clases, 20 marcas): `data/Listado_de_Tipos_de_maquina.xlsx`. Análisis en `04-catalogo-tipos-maquina.md`. Cierra el pendiente de D9. |
 
 ## Pendiente de recibir del cliente / por concretar
 
-- **Listado de fabricantes y modelos** (D9): Excel con nº de bandejas, espirales
-  por bandeja y selecciones, para cargar el catálogo inicial.
-- **Alcance de la aprobación de Dirección** (D17): qué aprueba (¿el expediente al
-  registrarlo? ¿condiciones económicas?) y con qué umbrales.
-- **Reglas de creación de planogramas** (D19).
-- **Acceso a la app "Visita Comercial"** y su estructura de datos en Firebase
-  (D24) para valorar la integración del checklist de instalación.
+- **Reglas de creación de planogramas** (D19): se definirán más adelante,
+  acordado con el cliente.
+- **Umbrales de aprobación de Dirección** (D17): Dirección revisa todos los
+  pasos; queda por concretar si algún paso requiere su aprobación bloqueante
+  (p. ej. superar la propuesta de inversión, D25).
+- **Acceso a Firebase de "Visita Comercial"** (D24): ver lista de accesos
+  solicitados en `05-accesos-firebase.md`.
 - **Recomendación de hosting** (D24): Firebase vs AWS — se resolverá en la
   propuesta técnica.

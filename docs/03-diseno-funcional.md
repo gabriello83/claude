@@ -24,7 +24,7 @@ del operador (D7). Moneda EUR, formatos por región. Mercado inicial: España.
 | Rol | Qué hace en la app |
 |---|---|
 | Administrador del tenant | Usuarios, direcciones de correo, plantillas, catálogo de modelos, idioma. |
-| Dirección | Aprueba expedientes según el flujo de aprobación (alcance por concretar, D17). |
+| Dirección | **Puede revisar todos los pasos** de cualquier expediente (visibilidad transversal, D17); recibe el aviso si el coste supera la propuesta de inversión (D25). |
 | Comercial | Registra la oferta ganada, rellena los datos de la instalación (fecha, contacto, requisitos de la ubicación). |
 | Servicio Técnico | Prepara máquinas y planogramas, solicita disponibilidad a proveedores, propone modelos alternativos, pide el cambio. |
 | Administración | Da de alta el cliente en su ERP (fuera de la app), registra canon y condiciones a facturar, confirma el cambio. |
@@ -38,13 +38,14 @@ de campo **no usan la app** ni reciben información directa (D17).
 
 ```mermaid
 flowchart TD
-    A[1. Registro de oferta ganada\nComercial] --> AP{Aprobación\nDirección}
-    AP --> B[2. Preparación técnica\nServicio Técnico]
+    A[1. Registro de oferta ganada\nComercial] --> I[Aviso a Administración:\n¿hay propuesta de inversión?]
+    I --> B[2. Preparación técnica\nServicio Técnico]
     B --> C[3. Alta administrativa\nAdministración]
     B --> D[4. Instalación\nComercial + Técnico]
     C --> D
     D --> E[5. Alta en ruta\nOperaciones]
     E --> F[Completado\n= correo de ruta enviado]
+    G[Dirección: revisión de\ntodos los pasos y control\ncoste vs inversión] -.-> A & B & C & D & E
 ```
 
 Cada expediente tiene estado global, tareas con responsable (rol), estado y
@@ -69,10 +70,20 @@ en curso, su fase y los cuellos de botella.
 - **Condiciones especiales** (solo documentación, D10): café gratuito facturado
   al cliente, combos, gratuidades por usuario/día, día de café gratis anual,
   lotes de Navidad y tipo **"otro"** con descripción libre.
+- **Equipamiento adicional** (D26): muebles, panelados, microondas, fuentes de
+  agua… **Lo rellena quien inserta la oferta** en este mismo paso, indicando
+  para cada elemento **proveedor y coste**; después el servicio técnico lo
+  solicita por correo como las máquinas. No llevan planograma.
 - **Canon** (D11): sin canon / fijo / variable / mixto — dato informativo para
   administración.
-- Al confirmar, pasa por la **aprobación de Dirección** (D17, alcance por
-  concretar) y se generan las tareas de los pasos siguientes.
+- **Propuesta de inversión** (D25): al crear el cliente se informa a
+  administración y se le pregunta si existe una propuesta de inversión; si la
+  hay, se registran importe y partidas. Desde ese momento el expediente
+  acumula los costes reales (máquinas, periféricos, equipamiento, instalación)
+  y muestra el consumido vs la propuesta, **avisando a Dirección y
+  Administración si el coste total la supera**.
+- Al confirmar se generan las tareas de los pasos siguientes. Dirección tiene
+  visibilidad de todos los pasos (D17).
 
 ### Paso 2 — Preparación técnica (Servicio Técnico)
 
@@ -89,6 +100,8 @@ Por cada máquina:
   nº de monedero y **contador de servicios** (D21).
 - **Periféricos nuevos** (monederos, lectores, billeteros, telemetría) →
   solicitud a su proveedor, también con seguimiento (D18).
+- **Equipamiento adicional** definido en la oferta (D26) → solicitud a su
+  proveedor con seguimiento; su coste computa en el control de inversión (D25).
 - **Planograma** (módulo licenciable aparte, D19): editor visual con rejilla
   bandejas × espirales según el modelo; espirales simple/doble/triple;
   productos y precios de la tarifa por posición; selecciones de café con
@@ -107,6 +120,9 @@ Por cada máquina:
 - Recibe ficha del cliente, condiciones de canon, tarifas y condiciones
   especiales a facturar (todo informativo, D11); da de alta el cliente en su
   ERP fuera de la app y lo confirma con su tarea.
+- Responde a la **pregunta sobre la propuesta de inversión** (D25): indica si
+  existe y aporta importe y partidas, que quedan registradas en el expediente
+  para el control de costes.
 - Confirma la preparación del cambio.
 
 ### Paso 4 — Instalación
@@ -147,7 +163,13 @@ Mismos mecanismos (expediente, tareas, correos, auditoría) con menos pasos:
   selecciones, tipo). Catálogo inicial importado del listado del cliente (D9).
 - **Cliente** / **Expediente** (tipo: instalación, retirada, sustitución,
   cambio planograma, subida precios; estado; tareas; canon; condiciones
-  especiales; aprobación).
+  especiales).
+- **PropuestaInversión** (D25): importe, partidas, fecha; el expediente
+  acumula **LíneasDeCoste** (máquina, periférico, equipamiento, instalación)
+  y compara consumido vs propuesta, con aviso al superarla.
+- **Equipamiento** (D26): tipo (mueble, panelado, microondas, fuente…),
+  proveedor, coste, estado de solicitud; lo introduce el comercial con la
+  oferta.
 - **Máquina**: modelo, nueva/usada, nº serie/matrícula, nº monedero, contador
   de servicios, periféricos (monedero, lector, billetero, app), telemetría,
   planograma.
@@ -170,11 +192,16 @@ CC. Basta con enviar (sin acuse, q39); cada envío queda archivado en el
 expediente.
 
 1. **Preparación técnica** al servicio técnico (máquinas + periféricos a preparar).
-2. **Solicitud de disponibilidad** a proveedor (máquinas y periféricos nuevos).
-3. **Planograma de fábrica** al fabricante (máquinas nuevas).
-4. **Petición de cambio** a administración.
-5. **Orden de instalación / retirada / sustitución** al instalador.
-6. **Alta/baja en ruta** + aviso al supervisor para rellenar el ERP.
+2. **Solicitud de disponibilidad** a proveedor (máquinas, periféricos y
+   equipamiento adicional: muebles, panelados, microondas, fuentes…).
+3. **Aviso a administración de cliente nuevo** con la pregunta sobre la
+   propuesta de inversión (D25).
+4. **Planograma de fábrica** al fabricante (máquinas nuevas).
+5. **Petición de cambio** a administración.
+6. **Orden de instalación / retirada / sustitución** al instalador.
+7. **Alta/baja en ruta** + aviso al supervisor para rellenar el ERP.
+8. **Aviso de exceso de inversión** a Dirección y Administración cuando el
+   coste acumulado supera la propuesta (D25).
 
 ## 7. Plantilla Excel de tarifas (D8, D20)
 
