@@ -29,18 +29,32 @@ ecosistema que las apps existentes, integración directa con "Visitas
 comerciales", sin duplicar infraestructura en AWS). Queda pendiente validar
 la **región** del proyecto por RGPD.
 
-## Qué falta por recibir
+## Estructura de Firestore recibida (2026-07-07, capturas de consola)
 
-1. **Región** del proyecto (Firestore → pestaña "Datos": aparece la ubicación,
-   p. ej. `eur3` o `europe-west1`).
-2. **Invitación como Viewer** a la consola (Usuarios y permisos) cuando
-   arranque el desarrollo, al correo del equipo que se designe.
-3. **Estructura de Firestore**: nombres de las colecciones y un documento de
-   ejemplo (anonimizado) de una visita/checklist de "Visitas comerciales".
-   Con una captura de la pestaña *Firestore → Datos* es suficiente.
-4. **Método de Authentication** usado (¿email/contraseña?).
-5. ¿Hay **Cloud Functions** desplegadas actualmente?
-6. Contacto del desarrollador de las apps existentes, si lo hay.
+- **Región**: `europe-west1` (UE → RGPD ✔). Base `(default)`, edición
+  Estándar, Firestore nativo, tiempo real habilitado.
+- ⚠️ **Copias de seguridad programadas: INHABILITADAS** — se recomienda
+  activarlas (o PITR) cuanto antes; es un dato operativo de negocio.
+- **Colecciones** (nombres de campos anonimizados, sin datos personales):
+
+| Colección | Contenido observado |
+|---|---|
+| `Usuarios` | `activo`, `email`, `nombre`, `rol` ("comercial", "supervisor"…), `zona[]` (delegaciones, p. ej. "Andalucía - Sevilla"). Roles y zonas gestionados en la propia app. |
+| `visitas` | Visita comercial: `centroNombre`, `comercialEmail/Id/Nombre`, `delegaciones[]`, `estado`, `fotoGeneral`, `matriculas[]` → por máquina, con `averias[]` (comentarios del técnico, fechas, estado), `createdAt`, `cierreVisitaNotificado`. **Es la fuente candidata del checklist de instalación con fotos.** |
+| `incidencias` | Incidencia por máquina: `cliente`, `codigo_operacion`, `delegacion`, `matricula`, `estado`, **`estadoVencloud` / `fechaCierreVencloud`** (punto de contacto con VendCloud), datos de contacto, `titulo`, confirmaciones y fechas. |
+| `operaciones` | Catálogo de tipos de operación/avería (`cod` T34…/A004, `nombre`, `categoria`, `asignacion` "Tecnico", `severidad`, `obsoleta`). |
+| `mail` | Cola de correos salientes — patrón compatible con la extensión *Trigger Email* de Firebase. Mismo patrón reutilizable en DIGIVEND. |
+| `logs` | Errores de cliente (`window.onerror`, stack, usuario, rol). |
+
+Con esto queda resuelto el punto 3 (estructura) y el 1 (región).
+
+## Qué falta por recibir (solo confirmaciones menores)
+
+1. **Método de Authentication** (¿email/contraseña?) y si la colección `mail`
+   la procesa la **extensión Trigger Email** o una Cloud Function propia
+   (pestaña *Extensions* / *Functions* de la consola).
+2. **Invitación como Viewer** a la consola cuando arranque el desarrollo.
+3. Contacto del desarrollador de las apps existentes, si lo hay.
 
 ## Qué necesitamos
 
