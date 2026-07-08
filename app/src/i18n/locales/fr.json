@@ -1,0 +1,52 @@
+{
+  "app": { "name": "DIGIVEND", "tagline": "Gestion des installations de distribution automatique" },
+  "login": {
+    "title": "Connexion",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "submit": "Se connecter",
+    "error": "Identifiants invalides"
+  },
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "expedientes": "Dossiers",
+    "clientes": "Clients",
+    "catalogo": "Catalogue de machines",
+    "tarifas": "Tarifs",
+    "configuracion": "Paramètres",
+    "logout": "Déconnexion"
+  },
+  "roles": {
+    "admin": "Administrateur",
+    "direccion": "Direction",
+    "comercial": "Commercial",
+    "tecnico": "Service Technique",
+    "administracion": "Administration",
+    "operaciones": "Opérations"
+  },
+  "catalogo": {
+    "title": "Catalogue des types de machine",
+    "codigo": "Code",
+    "clase": "Classe",
+    "marca": "Marque",
+    "modelo": "Modèle",
+    "canales": "Canaux",
+    "filas": "Rangées",
+    "columnas": "Colonnes",
+    "contenedores": "Conteneurs",
+    "buscar": "Rechercher par marque, modèle ou code…",
+    "empty": "Aucun modèle dans le catalogue. Importez-les avec le script de chargement."
+  },
+  "dashboard": {
+    "title": "Tableau de bord",
+    "misTareas": "Mes tâches en attente",
+    "expedientesEnCurso": "Dossiers en cours",
+    "sinTareas": "Vous n'avez aucune tâche en attente"
+  },
+  "common": {
+    "loading": "Chargement…",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "language": "Langue"
+  }
+}

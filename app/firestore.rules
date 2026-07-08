@@ -1,0 +1,93 @@
+rules_version = '2';
+
+// Aislamiento multi-tenant (propuesta técnica §3):
+// - Todo dato de negocio vive bajo /tenants/{tenantId}/...
+// - El token del usuario lleva custom claims: tenantId y roles[].
+// - Las transiciones de workflow, correos y costes se escriben desde
+//   Cloud Functions (Admin SDK, ignora estas reglas); el cliente solo
+//   lee y edita lo que su rol permite.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function autenticado() {
+      return request.auth != null;
+    }
+
+    function esDelTenant(tenantId) {
+      return autenticado() && request.auth.token.tenantId == tenantId;
+    }
+
+    function tieneRol(rol) {
+      return autenticado() && request.auth.token.roles.hasAny([rol, 'admin']);
+    }
+
+    match /tenants/{tenantId} {
+      // Config del tenant: leer cualquiera del tenant, escribir solo admin
+      allow read: if esDelTenant(tenantId);
+      allow write: if esDelTenant(tenantId) && tieneRol('admin');
+
+      match /usuarios/{usuarioId} {
+        allow read: if esDelTenant(tenantId);
+        allow write: if esDelTenant(tenantId) && tieneRol('admin');
+      }
+
+      // Catálogo: lectura general, mantenimiento por admin o servicio técnico
+      match /fabricantes/{doc=**} {
+        allow read: if esDelTenant(tenantId);
+        allow write: if esDelTenant(tenantId) && (tieneRol('tecnico') || tieneRol('admin'));
+      }
+      match /modelosMaquina/{doc=**} {
+        allow read: if esDelTenant(tenantId);
+        allow write: if esDelTenant(tenantId) && (tieneRol('tecnico') || tieneRol('admin'));
+      }
+      match /productos/{doc=**} {
+        allow read: if esDelTenant(tenantId);
+        allow write: if esDelTenant(tenantId) && (tieneRol('comercial') || tieneRol('tecnico'));
+      }
+
+      // Clientes y expedientes: crea el comercial; el resto de roles
+      // colabora en sus pasos. Dirección (D17) tiene lectura implícita
+      // porque pertenece al tenant.
+      match /clientes/{clienteId} {
+        allow read: if esDelTenant(tenantId);
+        allow create, update: if esDelTenant(tenantId) &&
+          (tieneRol('comercial') || tieneRol('administracion'));
+        allow delete: if esDelTenant(tenantId) && tieneRol('admin');
+
+        match /expedientes/{expedienteId}/{doc=**} {
+          allow read: if esDelTenant(tenantId);
+          // v1: escritura por roles implicados; las transiciones de estado
+          // y líneas de coste pasarán a Functions en la Fase 2.
+          allow write: if esDelTenant(tenantId) &&
+            (tieneRol('comercial') || tieneRol('tecnico') ||
+             tieneRol('administracion') || tieneRol('operaciones'));
+        }
+      }
+
+      match /tarifas/{doc=**} {
+        allow read: if esDelTenant(tenantId);
+        allow write: if esDelTenant(tenantId) && (tieneRol('comercial') || tieneRol('administracion'));
+      }
+
+      match /plantillasCorreo/{doc=**} {
+        allow read: if esDelTenant(tenantId);
+        allow write: if esDelTenant(tenantId) && tieneRol('admin');
+      }
+      match /plantillasPlanograma/{doc=**} {
+        allow read: if esDelTenant(tenantId);
+        allow write: if esDelTenant(tenantId) && tieneRol('tecnico');
+      }
+
+      // Auditoría: solo lectura desde el cliente; escribe Functions
+      match /auditoria/{doc=**} {
+        allow read: if esDelTenant(tenantId) && (tieneRol('direccion') || tieneRol('admin'));
+        allow write: if false;
+      }
+    }
+
+    // Cola de correo global: solo Functions
+    match /mail/{doc=**} {
+      allow read, write: if false;
+    }
+  }
+}

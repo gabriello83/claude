@@ -1,0 +1,52 @@
+{
+  "app": { "name": "DIGIVEND", "tagline": "Vending installation management" },
+  "login": {
+    "title": "Sign in",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Sign in",
+    "error": "Invalid credentials"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "expedientes": "Work orders",
+    "clientes": "Customers",
+    "catalogo": "Machine catalogue",
+    "tarifas": "Price lists",
+    "configuracion": "Settings",
+    "logout": "Sign out"
+  },
+  "roles": {
+    "admin": "Administrator",
+    "direccion": "Management",
+    "comercial": "Sales",
+    "tecnico": "Technical Service",
+    "administracion": "Administration",
+    "operaciones": "Operations"
+  },
+  "catalogo": {
+    "title": "Machine type catalogue",
+    "codigo": "Code",
+    "clase": "Class",
+    "marca": "Brand",
+    "modelo": "Model",
+    "canales": "Channels",
+    "filas": "Rows",
+    "columnas": "Columns",
+    "contenedores": "Canisters",
+    "buscar": "Search by brand, model or code…",
+    "empty": "No models in the catalogue. Import them with the seed script."
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "misTareas": "My pending tasks",
+    "expedientesEnCurso": "Work orders in progress",
+    "sinTareas": "You have no pending tasks"
+  },
+  "common": {
+    "loading": "Loading…",
+    "save": "Save",
+    "cancel": "Cancel",
+    "language": "Language"
+  }
+}

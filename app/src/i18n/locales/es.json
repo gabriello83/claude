@@ -1,0 +1,52 @@
+{
+  "app": { "name": "DIGIVEND", "tagline": "Gestión de instalaciones de vending" },
+  "login": {
+    "title": "Iniciar sesión",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "submit": "Entrar",
+    "error": "Credenciales incorrectas"
+  },
+  "nav": {
+    "dashboard": "Panel",
+    "expedientes": "Expedientes",
+    "clientes": "Clientes",
+    "catalogo": "Catálogo de máquinas",
+    "tarifas": "Tarifas",
+    "configuracion": "Configuración",
+    "logout": "Cerrar sesión"
+  },
+  "roles": {
+    "admin": "Administrador",
+    "direccion": "Dirección",
+    "comercial": "Comercial",
+    "tecnico": "Servicio Técnico",
+    "administracion": "Administración",
+    "operaciones": "Operaciones"
+  },
+  "catalogo": {
+    "title": "Catálogo de tipos de máquina",
+    "codigo": "Código",
+    "clase": "Clase",
+    "marca": "Marca",
+    "modelo": "Modelo",
+    "canales": "Canales",
+    "filas": "Filas",
+    "columnas": "Columnas",
+    "contenedores": "Contenedores",
+    "buscar": "Buscar por marca, modelo o código…",
+    "empty": "No hay modelos en el catálogo. Impórtalos con el script de carga."
+  },
+  "dashboard": {
+    "title": "Panel de control",
+    "misTareas": "Mis tareas pendientes",
+    "expedientesEnCurso": "Expedientes en curso",
+    "sinTareas": "No tienes tareas pendientes"
+  },
+  "common": {
+    "loading": "Cargando…",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "language": "Idioma"
+  }
+}

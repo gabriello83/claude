@@ -1,0 +1,52 @@
+{
+  "app": { "name": "DIGIVEND", "tagline": "Gestione delle installazioni di vending" },
+  "login": {
+    "title": "Accedi",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Entra",
+    "error": "Credenziali non valide"
+  },
+  "nav": {
+    "dashboard": "Pannello",
+    "expedientes": "Pratiche",
+    "clientes": "Clienti",
+    "catalogo": "Catalogo macchine",
+    "tarifas": "Listini",
+    "configuracion": "Impostazioni",
+    "logout": "Esci"
+  },
+  "roles": {
+    "admin": "Amministratore",
+    "direccion": "Direzione",
+    "comercial": "Commerciale",
+    "tecnico": "Servizio Tecnico",
+    "administracion": "Amministrazione",
+    "operaciones": "Operazioni"
+  },
+  "catalogo": {
+    "title": "Catalogo dei tipi di macchina",
+    "codigo": "Codice",
+    "clase": "Classe",
+    "marca": "Marca",
+    "modelo": "Modello",
+    "canales": "Canali",
+    "filas": "Righe",
+    "columnas": "Colonne",
+    "contenedores": "Contenitori",
+    "buscar": "Cerca per marca, modello o codice…",
+    "empty": "Nessun modello nel catalogo. Importali con lo script di caricamento."
+  },
+  "dashboard": {
+    "title": "Pannello di controllo",
+    "misTareas": "Le mie attività in sospeso",
+    "expedientesEnCurso": "Pratiche in corso",
+    "sinTareas": "Non hai attività in sospeso"
+  },
+  "common": {
+    "loading": "Caricamento…",
+    "save": "Salva",
+    "cancel": "Annulla",
+    "language": "Lingua"
+  }
+}
