@@ -5,3 +5,4 @@ dist/
 *.log
 .firebase/
 serviceAccount*.json
+*.tsbuildinfo
