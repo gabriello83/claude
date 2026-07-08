@@ -69,6 +69,22 @@ export interface ModeloMaquina {
   contenedores: number;
 }
 
+// ---- Artículos (catálogo para planogramas, docs/07-catalogo-articulos.md) ----
+
+export interface Producto {
+  id: string;
+  /** Código de artículo (coincide con VendCloud); también es el ID del documento */
+  codigo: string;
+  nombre: string;
+  obsoleto: boolean;
+  fabricante: string;
+  categoria: string; // p. ej. "SNACK", "BEBIDA FRIA"
+  subcategoria: string; // p. ej. "YOGURT", "PET"
+  categoriaPrecios?: string;
+  /** Ruta en Storage: tenants/{tenantId}/productos/{codigo}.png */
+  imagenPath?: string;
+}
+
 // ---- Cliente y expedientes ----
 
 export type TipoExpediente =

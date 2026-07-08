@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "seed:catalogo": "node scripts/seed-catalogo.mjs"
+    "seed:catalogo": "node scripts/seed-catalogo.mjs",
+    "seed:articulos": "node scripts/seed-articulos.mjs"
   },
   "dependencies": {
     "firebase": "^11.1.0",

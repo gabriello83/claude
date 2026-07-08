@@ -32,10 +32,14 @@ descubrimiento (`01-cuestionario-descubrimiento.md`).
 | D25 | Propuesta de inversión | Al **crear un cliente nuevo** se informa a administración y se le **pregunta si existe una propuesta de inversión**; en caso afirmativo se registran sus detalles (importe y partidas). El expediente acumula los **costes reales** (máquinas, periféricos, equipamiento, instalación) y **controla que el coste total no supere la propuesta de inversión**, avisando si se excede. |
 | D26 | Equipamiento adicional | Además de máquinas, el cliente puede pedir **muebles, panelados, microondas, fuentes de agua…** Cada elemento tiene **proveedor y coste**, se solicita por correo como las máquinas (D18) y computa en el control de inversión (D25). Sin planograma. |
 | D27 | Catálogo recibido | El cliente ha entregado el **listado de tipos de máquina** (202 tipos, 10 clases, 20 marcas): `data/Listado_de_Tipos_de_maquina.xlsx`. Análisis en `04-catalogo-tipos-maquina.md`. Cierra el pendiente de D9. |
-| D28 | Plataforma: Firebase | Recibida la información del proyecto Firebase existente ("Serunion Vending APP", `vending-care-tracker`): plan **Blaze**, con **Firestore, Hosting, Authentication y App Check** en uso y dos apps web ("Atención al cliente" y "Visitas comerciales"). **Se recomienda Firebase como plataforma de DIGIVEND** (mismo ecosistema, integración directa con Visitas Comerciales). Pendiente validar la región por RGPD. Detalle en `05-accesos-firebase.md`. |
+| D28 | Plataforma: Firebase | Recibida la información del proyecto Firebase existente ("Serunion Vending APP", `vending-care-tracker`): plan **Blaze**, con **Firestore, Hosting, Authentication y App Check** en uso y dos apps web ("Atención al cliente" y "Visitas comerciales"). **Se recomienda Firebase como plataforma de DIGIVEND** (mismo ecosistema, integración directa con Visitas Comerciales). Región `europe-west1` confirmada (RGPD ✔). Detalle en `05-accesos-firebase.md`. |
+| D29 | Catálogo de artículos recibido | El cliente ha entregado el **listado de artículos para planogramas** (858 artículos, 7 categorías, 56 subcategorías, 90 fabricantes): `data/Listado_de_Articulos.xlsx`. Los códigos coinciden con VendCloud. Las **imágenes de producto** existen en una carpeta local del cliente y se cargarán a Firebase Storage con la convención `tenants/{tenantId}/productos/{codigo}`. Análisis en `07-catalogo-articulos.md`. |
 
 ## Pendiente de recibir del cliente / por concretar
 
+- **ZIP con las imágenes de producto** (D29): comprimir la carpeta local
+  (`…\Vencloud\Imagenes\Productos`) y entregarla; idealmente cada fichero
+  nombrado con el código de artículo para el emparejamiento automático.
 - **Reglas de creación de planogramas** (D19): se definirán más adelante,
   acordado con el cliente.
 - **Umbrales de aprobación de Dirección** (D17): Dirección revisa todos los
