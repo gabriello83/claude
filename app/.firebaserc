@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "digivend-dev",
+    "dev": "digivend-dev",
+    "prod": "digivend-prod"
+  }
+}

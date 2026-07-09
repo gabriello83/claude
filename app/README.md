@@ -24,11 +24,42 @@ Para crear un usuario de prueba en el emulador: consola de emuladores
 (http://127.0.0.1:4000) → Authentication → añadir usuario, y asignar los
 claims `{"tenantId": "piloto", "roles": ["admin"]}`.
 
-## Build y despliegue
+## Puesta en marcha en `digivend-dev` (primera vez)
+
+En la consola de Firebase (una sola vez):
+
+1. **Firestore**: Bases de datos → Crear base de datos → ubicación **`europe-west1`**, modo producción.
+2. **Authentication**: Empezar → método **Correo electrónico/contraseña** → habilitar.
+3. **App web**: Configuración del proyecto → Tus apps → icono `</>` → nombre "DIGIVEND" (sin Hosting automático). Copiar la config en `app/.env.local` (ver `.env.example`, con `VITE_USE_EMULATORS=false`).
+4. **Plan Blaze**: necesario solo para las Cloud Functions (los correos). Hosting, Firestore y Auth funcionan en Spark.
+5. **Clave de cuenta de servicio**: Configuración → Cuentas de servicio → Generar nueva clave privada → guardar como `serviceAccount.json` (está en `.gitignore`).
+
+Desde `app/` con Node instalado:
+
+```bash
+npm install
+npx firebase-tools login
+npm run build
+npx firebase-tools deploy --only firestore:rules,hosting          # + ,functions con Blaze
+
+# Datos iniciales del tenant piloto
+GOOGLE_APPLICATION_CREDENTIALS=serviceAccount.json npm run seed:catalogo -- --tenant=piloto --project=digivend-dev
+GOOGLE_APPLICATION_CREDENTIALS=serviceAccount.json npm run seed:articulos -- --tenant=piloto --project=digivend-dev
+
+# Primer administrador (crea también el tenant y sus claims)
+node scripts/crear-usuario.mjs --project=digivend-dev --sa=serviceAccount.json \
+  --tenant=piloto --nombre-tenant="Piloto" --email=admin@ejemplo.com --password=CambiaEsto1 --roles=admin
+
+# Imágenes de producto (desde el PC con la carpeta local)
+node scripts/subir-imagenes.mjs --tenant=piloto --project=digivend-dev \
+  --dir="C:\...\Vencloud\Imagenes\Productos" --sa=serviceAccount.json
+```
+
+## Build y despliegue (habitual)
 
 ```bash
 npm run build       # tsc + vite build → dist/
-firebase deploy --only hosting,firestore:rules
+npx firebase-tools deploy --only hosting,firestore:rules,functions
 ```
 
 ## Estructura
