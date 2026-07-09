@@ -170,6 +170,45 @@
     "equipamiento": "Equipamiento",
     "instalacion": "Instalación"
   },
+  "correos": {
+    "title": "Correos",
+    "enviados": "Historial de correos",
+    "sinCorreos": "Ningún correo enviado todavía",
+    "estado_pendiente": "Pendiente",
+    "estado_enviado": "Enviado",
+    "estado_error": "Error",
+    "ruta": "Ruta",
+    "reponedor": "Reponedor",
+    "tecnico": "Técnico",
+    "faltanDirecciones": "Este tipo de correo no tiene direcciones configuradas. Ve a Configuración → Direcciones de correo.",
+    "tipos": {
+      "preparacion_tecnica": "Preparación técnica",
+      "solicitud_proveedor": "Solicitud a proveedor",
+      "aviso_cliente_nuevo": "Aviso de cliente nuevo",
+      "planograma_fabricante": "Planograma al fabricante",
+      "peticion_cambio": "Petición de cambio",
+      "orden_instalacion": "Orden de instalación",
+      "alta_ruta": "Alta en ruta",
+      "exceso_inversion": "Aviso de exceso de inversión"
+    }
+  },
+  "config": {
+    "title": "Configuración",
+    "direcciones": "Direcciones de correo por tipo",
+    "para": "Para (separadas por coma)",
+    "cc": "CC",
+    "plantillas": "Plantillas de correo",
+    "asunto": "Asunto",
+    "cuerpo": "Cuerpo",
+    "variables": "Variables disponibles",
+    "smtp": "Servidor de correo (SMTP)",
+    "host": "Servidor",
+    "puerto": "Puerto",
+    "usuario": "Usuario",
+    "password": "Contraseña",
+    "remitente": "Remitente",
+    "guardado": "Guardado ✓"
+  },
   "common": {
     "loading": "Cargando…",
     "save": "Guardar",

@@ -1,6 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useAuth } from "@/auth/AuthContext";
+import { useAuth, tieneRol } from "@/auth/AuthContext";
 import { SelectorIdioma } from "./SelectorIdioma";
 
 export function Layout() {
@@ -15,6 +15,9 @@ export function Layout() {
           <NavLink to="/">{t("nav.dashboard")}</NavLink>
           <NavLink to="/expedientes">{t("nav.expedientes")}</NavLink>
           <NavLink to="/catalogo">{t("nav.catalogo")}</NavLink>
+          {sesion?.roles.includes("admin") && (
+            <NavLink to="/configuracion">{t("nav.configuracion")}</NavLink>
+          )}
         </nav>
         <div className="topbar-right">
           <SelectorIdioma />

@@ -170,6 +170,45 @@
     "equipamiento": "Equipment",
     "instalacion": "Installation"
   },
+  "correos": {
+    "title": "Emails",
+    "enviados": "Email history",
+    "sinCorreos": "No emails sent yet",
+    "estado_pendiente": "Pending",
+    "estado_enviado": "Sent",
+    "estado_error": "Error",
+    "ruta": "Route",
+    "reponedor": "Replenisher",
+    "tecnico": "Technician",
+    "faltanDirecciones": "This email type has no addresses configured. Go to Settings → Email addresses.",
+    "tipos": {
+      "preparacion_tecnica": "Technical preparation",
+      "solicitud_proveedor": "Supplier request",
+      "aviso_cliente_nuevo": "New customer notice",
+      "planograma_fabricante": "Planogram to manufacturer",
+      "peticion_cambio": "Coin change request",
+      "orden_instalacion": "Installation order",
+      "alta_ruta": "Route assignment",
+      "exceso_inversion": "Investment excess alert"
+    }
+  },
+  "config": {
+    "title": "Settings",
+    "direcciones": "Email addresses per type",
+    "para": "To (comma separated)",
+    "cc": "CC",
+    "plantillas": "Email templates",
+    "asunto": "Subject",
+    "cuerpo": "Body",
+    "variables": "Available variables",
+    "smtp": "Mail server (SMTP)",
+    "host": "Host",
+    "puerto": "Port",
+    "usuario": "User",
+    "password": "Password",
+    "remitente": "Sender",
+    "guardado": "Saved ✓"
+  },
   "common": {
     "loading": "Loading…",
     "save": "Save",

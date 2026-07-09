@@ -170,6 +170,45 @@
     "equipamiento": "Équipement",
     "instalacion": "Installation"
   },
+  "correos": {
+    "title": "E-mails",
+    "enviados": "Historique des e-mails",
+    "sinCorreos": "Aucun e-mail envoyé pour l'instant",
+    "estado_pendiente": "En attente",
+    "estado_enviado": "Envoyé",
+    "estado_error": "Erreur",
+    "ruta": "Tournée",
+    "reponedor": "Approvisionneur",
+    "tecnico": "Technicien",
+    "faltanDirecciones": "Ce type d'e-mail n'a pas d'adresses configurées. Allez dans Paramètres → Adresses e-mail.",
+    "tipos": {
+      "preparacion_tecnica": "Préparation technique",
+      "solicitud_proveedor": "Demande au fournisseur",
+      "aviso_cliente_nuevo": "Avis de nouveau client",
+      "planograma_fabricante": "Planogramme au fabricant",
+      "peticion_cambio": "Demande de fonds de caisse",
+      "orden_instalacion": "Ordre d'installation",
+      "alta_ruta": "Affectation à la tournée",
+      "exceso_inversion": "Alerte de dépassement d'investissement"
+    }
+  },
+  "config": {
+    "title": "Paramètres",
+    "direcciones": "Adresses e-mail par type",
+    "para": "À (séparées par des virgules)",
+    "cc": "CC",
+    "plantillas": "Modèles d'e-mail",
+    "asunto": "Objet",
+    "cuerpo": "Corps",
+    "variables": "Variables disponibles",
+    "smtp": "Serveur de messagerie (SMTP)",
+    "host": "Serveur",
+    "puerto": "Port",
+    "usuario": "Utilisateur",
+    "password": "Mot de passe",
+    "remitente": "Expéditeur",
+    "guardado": "Enregistré ✓"
+  },
   "common": {
     "loading": "Chargement…",
     "save": "Enregistrer",

@@ -181,3 +181,27 @@ button.secundario { background: #e3e9ef; color: var(--text); }
 button.secundario:hover { background: #d3dde6; }
 .form-inline { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: flex-end; }
 .form-inline label { display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.9rem; }
+
+/* Correos y configuración */
+textarea {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.5rem 0.6rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background: #fff;
+  color: var(--text);
+}
+.correo-pendiente { background: #fff3cd; }
+.correo-enviado { background: #d1e7dd; }
+.correo-error { background: #f8d7da; }
+.tipo-correo { min-width: 180px; font-size: 0.9rem; font-weight: 600; align-self: center; }
+.alta-ruta { margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px dashed var(--border); }
+.ok {
+  background: #d1e7dd;
+  border: 1px solid #a3cfbb;
+  color: #0a3622;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  margin: 0.6rem 0;
+}

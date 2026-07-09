@@ -170,6 +170,45 @@
     "equipamiento": "Attrezzatura",
     "instalacion": "Installazione"
   },
+  "correos": {
+    "title": "Email",
+    "enviados": "Storico email",
+    "sinCorreos": "Nessuna email inviata finora",
+    "estado_pendiente": "In attesa",
+    "estado_enviado": "Inviata",
+    "estado_error": "Errore",
+    "ruta": "Giro",
+    "reponedor": "Rifornitore",
+    "tecnico": "Tecnico",
+    "faltanDirecciones": "Questo tipo di email non ha indirizzi configurati. Vai a Impostazioni → Indirizzi email.",
+    "tipos": {
+      "preparacion_tecnica": "Preparazione tecnica",
+      "solicitud_proveedor": "Richiesta al fornitore",
+      "aviso_cliente_nuevo": "Avviso nuovo cliente",
+      "planograma_fabricante": "Planogramma al produttore",
+      "peticion_cambio": "Richiesta fondo cassa",
+      "orden_instalacion": "Ordine di installazione",
+      "alta_ruta": "Assegnazione al giro",
+      "exceso_inversion": "Avviso superamento investimento"
+    }
+  },
+  "config": {
+    "title": "Impostazioni",
+    "direcciones": "Indirizzi email per tipo",
+    "para": "A (separati da virgola)",
+    "cc": "CC",
+    "plantillas": "Modelli di email",
+    "asunto": "Oggetto",
+    "cuerpo": "Corpo",
+    "variables": "Variabili disponibili",
+    "smtp": "Server di posta (SMTP)",
+    "host": "Server",
+    "puerto": "Porta",
+    "usuario": "Utente",
+    "password": "Password",
+    "remitente": "Mittente",
+    "guardado": "Salvato ✓"
+  },
   "common": {
     "loading": "Caricamento…",
     "save": "Salva",

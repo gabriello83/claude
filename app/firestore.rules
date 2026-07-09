@@ -78,16 +78,26 @@ service cloud.firestore {
         allow write: if esDelTenant(tenantId) && tieneRol('tecnico');
       }
 
+      // Cola de correo del tenant: los roles implicados encolan; el estado
+      // solo lo actualiza la Function de envío (Admin SDK)
+      match /mail/{mailId} {
+        allow read: if esDelTenant(tenantId);
+        allow create: if esDelTenant(tenantId) &&
+          (tieneRol('comercial') || tieneRol('tecnico') ||
+           tieneRol('administracion') || tieneRol('operaciones'));
+        allow update, delete: if false;
+      }
+
+      // Credenciales SMTP y otros secretos del tenant: solo el administrador
+      match /secretos/{doc} {
+        allow read, write: if esDelTenant(tenantId) && tieneRol('admin');
+      }
+
       // Auditoría: solo lectura desde el cliente; escribe Functions
       match /auditoria/{doc=**} {
         allow read: if esDelTenant(tenantId) && (tieneRol('direccion') || tieneRol('admin'));
         allow write: if false;
       }
-    }
-
-    // Cola de correo global: solo Functions
-    match /mail/{doc=**} {
-      allow read, write: if false;
     }
   }
 }
