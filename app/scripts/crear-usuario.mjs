@@ -3,16 +3,17 @@
 // Imprescindible para el primer administrador: los claims solo pueden
 // asignarse con el Admin SDK, nunca desde la app.
 //
-// Uso (con una clave de cuenta de servicio del proyecto):
-//   node scripts/crear-usuario.mjs --project=digivend-dev --sa=serviceAccount.json \
+// Uso desde Cloud Shell (credenciales automáticas, sin clave):
+//   node scripts/crear-usuario.mjs --project=digivend-dev \
 //     --tenant=piloto --nombre-tenant="Serunion Vending" --idioma=es \
 //     --email=admin@operador.com --password=Secreta123 --nombre="Admin" --roles=admin
 //
+// Fuera de Cloud Shell, añadir --sa=serviceAccount.json.
 // Roles válidos: admin, direccion, comercial, tecnico, administracion, operaciones
 // (varios separados por coma: --roles=comercial,tecnico)
 
 import { readFileSync } from "node:fs";
-import { initializeApp, cert } from "firebase-admin/app";
+import { initializeApp, cert, applicationDefault } from "firebase-admin/app";
 import { getAuth } from "firebase-admin/auth";
 import { getFirestore } from "firebase-admin/firestore";
 
@@ -24,9 +25,9 @@ const args = Object.fromEntries(
 );
 
 const { project, sa, tenant, email, password } = args;
-if (!project || !sa || !tenant || !email || !password) {
+if (!project || !tenant || !email || !password) {
   console.error(
-    "Uso: node scripts/crear-usuario.mjs --project=... --sa=serviceAccount.json --tenant=... --email=... --password=... [--roles=admin] [--nombre=...] [--nombre-tenant=...] [--idioma=es]",
+    "Uso: node scripts/crear-usuario.mjs --project=... --tenant=... --email=... --password=... [--sa=serviceAccount.json] [--roles=admin] [--nombre=...] [--nombre-tenant=...] [--idioma=es]",
   );
   process.exit(1);
 }
@@ -39,7 +40,10 @@ if (invalidos.length) {
   process.exit(1);
 }
 
-initializeApp({ projectId: project, credential: cert(JSON.parse(readFileSync(sa, "utf8"))) });
+initializeApp({
+  projectId: project,
+  credential: sa ? cert(JSON.parse(readFileSync(sa, "utf8"))) : applicationDefault(),
+});
 const auth = getAuth();
 const db = getFirestore();
 
