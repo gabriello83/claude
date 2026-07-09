@@ -242,6 +242,30 @@
       "app": "Appli"
     }
   },
+  "planograma": {
+    "title": "Planogrammes",
+    "sinLicencia": "Le module planogrammes n'est pas inclus dans la licence de votre entreprise. Contactez DIGIVEND pour l'activer.",
+    "bandeja": "Plateau",
+    "espiral": "Spirale",
+    "producto": "Produit",
+    "buscarProducto": "Rechercher un produit (code ou nom)",
+    "capacidad": "Capacité",
+    "precio": "Prix",
+    "tipoEspiral": "Type de spirale",
+    "espiral_simple": "Simple",
+    "espiral_doble": "Double",
+    "espiral_triple": "Triple",
+    "vaciar": "Vider la position",
+    "posiciones": "Positions",
+    "guardarPlantilla": "Enregistrer comme modèle",
+    "nombrePlantilla": "Nom du modèle",
+    "tipoCliente": "Type de client (bureau, hôpital, usine…)",
+    "cargarPlantilla": "Charger un modèle…",
+    "hojaTaller": "Fiche de préparation d'atelier",
+    "planogramaFabrica": "Planogramme d'usine",
+    "selecciones": "Sélections café",
+    "hueco": "Emplacement vide"
+  },
   "common": {
     "loading": "Chargement…",
     "save": "Enregistrer",

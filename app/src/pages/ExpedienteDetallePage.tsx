@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   collection,
   doc,
@@ -340,6 +340,30 @@ export function ExpedienteDetallePage() {
                   </span>
                 </li>
               ))}
+            </ul>
+          )}
+        </article>
+
+        <article className="card">
+          <h2>{t("planograma.title")}</h2>
+          {maquinas.length === 0 ? (
+            <p>—</p>
+          ) : (
+            <ul className="lista-tareas">
+              {maquinas.map((m) => {
+                const mod = modelos.get(m.modeloId);
+                return (
+                  <li key={m.id}>
+                    <Link to={`/expedientes/${expediente.id}/planograma/${m.id}`}>
+                      {mod ? `${mod.marca} ${mod.modelo} (${mod.codigo})` : m.modeloId}
+                    </Link>
+                    <span className="rol">
+                      {m.nueva ? t("nuevoExpediente.nueva") : t("nuevoExpediente.usada")}
+                      {m.numeroSerie ? ` · S/N ${m.numeroSerie}` : ""}
+                    </span>
+                  </li>
+                );
+              })}
             </ul>
           )}
         </article>

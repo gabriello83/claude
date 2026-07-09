@@ -242,6 +242,30 @@
       "app": "App"
     }
   },
+  "planograma": {
+    "title": "Planogrammi",
+    "sinLicencia": "Il modulo planogrammi non è incluso nella licenza della tua azienda. Contatta DIGIVEND per attivarlo.",
+    "bandeja": "Ripiano",
+    "espiral": "Spirale",
+    "producto": "Prodotto",
+    "buscarProducto": "Cerca prodotto (codice o nome)",
+    "capacidad": "Capacità",
+    "precio": "Prezzo",
+    "tipoEspiral": "Tipo di spirale",
+    "espiral_simple": "Semplice",
+    "espiral_doble": "Doppia",
+    "espiral_triple": "Tripla",
+    "vaciar": "Svuota posizione",
+    "posiciones": "Posizioni",
+    "guardarPlantilla": "Salva come modello",
+    "nombrePlantilla": "Nome del modello",
+    "tipoCliente": "Tipo di cliente (ufficio, ospedale, fabbrica…)",
+    "cargarPlantilla": "Carica modello…",
+    "hojaTaller": "Scheda di preparazione officina",
+    "planogramaFabrica": "Planogramma di fabbrica",
+    "selecciones": "Selezioni caffè",
+    "hueco": "Vano vuoto"
+  },
   "common": {
     "loading": "Caricamento…",
     "save": "Salva",

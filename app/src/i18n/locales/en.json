@@ -242,6 +242,30 @@
       "app": "App"
     }
   },
+  "planograma": {
+    "title": "Planograms",
+    "sinLicencia": "The planogram module is not included in your company's licence. Contact DIGIVEND to activate it.",
+    "bandeja": "Tray",
+    "espiral": "Spiral",
+    "producto": "Product",
+    "buscarProducto": "Search product (code or name)",
+    "capacidad": "Capacity",
+    "precio": "Price",
+    "tipoEspiral": "Spiral type",
+    "espiral_simple": "Single",
+    "espiral_doble": "Double",
+    "espiral_triple": "Triple",
+    "vaciar": "Clear position",
+    "posiciones": "Positions",
+    "guardarPlantilla": "Save as template",
+    "nombrePlantilla": "Template name",
+    "tipoCliente": "Customer type (office, hospital, factory…)",
+    "cargarPlantilla": "Load template…",
+    "hojaTaller": "Workshop preparation sheet",
+    "planogramaFabrica": "Factory planogram",
+    "selecciones": "Coffee selections",
+    "hueco": "Empty slot"
+  },
   "common": {
     "loading": "Loading…",
     "save": "Save",

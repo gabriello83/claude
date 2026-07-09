@@ -10,6 +10,7 @@ import { NuevoExpedientePage } from "@/pages/NuevoExpedientePage";
 import { ExpedienteDetallePage } from "@/pages/ExpedienteDetallePage";
 import { ConfiguracionPage } from "@/pages/ConfiguracionPage";
 import { TarifasPage } from "@/pages/TarifasPage";
+import { PlanogramaPage } from "@/pages/PlanogramaPage";
 
 function RutasPrivadas() {
   const { sesion, cargando } = useAuth();
@@ -33,6 +34,7 @@ export default function App() {
             <Route path="/expedientes/:id" element={<ExpedienteDetallePage />} />
             <Route path="/configuracion" element={<ConfiguracionPage />} />
             <Route path="/tarifas" element={<TarifasPage />} />
+            <Route path="/expedientes/:id/planograma/:maquinaId" element={<PlanogramaPage />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

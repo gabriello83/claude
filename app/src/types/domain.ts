@@ -271,12 +271,29 @@ export interface PosicionPlanograma {
   precio?: number;
 }
 
+export interface SeleccionPlanograma {
+  numero: number;
+  nombre: string;
+  precio: number;
+}
+
 export interface Planograma {
   id: string;
   maquinaId: string;
+  modeloId: string;
   posiciones: PosicionPlanograma[];
   /** Selecciones de café con precio (máquinas de bebidas calientes) */
-  selecciones: { numero: number; nombre: string; precio: number }[];
+  selecciones: SeleccionPlanograma[];
+}
+
+/** Plantilla reutilizable por modelo y tipo de cliente (D19/q23) */
+export interface PlantillaPlanograma {
+  id: string;
+  nombre: string;
+  modeloId: string;
+  tipoCliente?: string; // oficina, hospital, fábrica…
+  posiciones: PosicionPlanograma[];
+  selecciones: SeleccionPlanograma[];
 }
 
 // ---- Auditoría ----

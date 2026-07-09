@@ -242,6 +242,30 @@
       "app": "Aplicación"
     }
   },
+  "planograma": {
+    "title": "Planogramas",
+    "sinLicencia": "El módulo de planogramas no está incluido en la licencia de tu empresa. Contacta con DIGIVEND para activarlo.",
+    "bandeja": "Bandeja",
+    "espiral": "Espiral",
+    "producto": "Producto",
+    "buscarProducto": "Buscar producto (código o nombre)",
+    "capacidad": "Capacidad",
+    "precio": "Precio",
+    "tipoEspiral": "Tipo de espiral",
+    "espiral_simple": "Simple",
+    "espiral_doble": "Doble",
+    "espiral_triple": "Triple",
+    "vaciar": "Vaciar posición",
+    "posiciones": "Posiciones",
+    "guardarPlantilla": "Guardar como plantilla",
+    "nombrePlantilla": "Nombre de la plantilla",
+    "tipoCliente": "Tipo de cliente (oficina, hospital, fábrica…)",
+    "cargarPlantilla": "Cargar plantilla…",
+    "hojaTaller": "Hoja de preparación de taller",
+    "planogramaFabrica": "Planograma de fábrica",
+    "selecciones": "Selecciones de café",
+    "hueco": "Hueco"
+  },
   "common": {
     "loading": "Cargando…",
     "save": "Guardar",

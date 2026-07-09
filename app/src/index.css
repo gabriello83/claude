@@ -197,6 +197,24 @@ textarea {
 .correo-error { background: #f8d7da; }
 .tipo-correo { min-width: 180px; font-size: 0.9rem; font-weight: 600; align-self: center; }
 .alta-ruta { margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px dashed var(--border); }
+/* Editor de planogramas */
+.planograma-layout { display: flex; gap: 1rem; align-items: flex-start; flex-wrap: wrap; }
+.planograma-layout .tabla-scroll { flex: 2 1 480px; }
+.editor-celda { flex: 1 1 260px; position: sticky; top: 1rem; }
+.editor-celda .resultados button { width: 100%; text-align: left; font-size: 0.85rem; padding: 0.35rem 0.6rem; }
+.rejilla td.celda {
+  cursor: pointer;
+  min-width: 64px;
+  height: 56px;
+  vertical-align: top;
+  background: #fafbfc;
+}
+.rejilla td.celda:hover { background: #eef2f6; }
+.rejilla td.celda.ocupada { background: #d1e7dd; }
+.rejilla td.celda.activa { outline: 2px solid var(--brand); outline-offset: -2px; }
+.celda-num { font-size: 0.7rem; color: var(--muted); }
+.celda-prod { font-size: 0.78rem; font-weight: 600; white-space: normal; }
+
 .aviso-suave {
   background: #fff3cd;
   border: 1px solid #ffe69c;
