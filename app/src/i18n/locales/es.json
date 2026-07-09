@@ -1,5 +1,8 @@
 {
-  "app": { "name": "DIGIVEND", "tagline": "Gestión de instalaciones de vending" },
+  "app": {
+    "name": "DIGIVEND",
+    "tagline": "Gestión de instalaciones de vending"
+  },
   "login": {
     "title": "Iniciar sesión",
     "email": "Correo electrónico",
@@ -60,7 +63,10 @@
       "cambio_planograma": "Cambio de planograma",
       "subida_precios": "Subida de precios"
     },
-    "ofertas": { "publica": "Pública", "privada": "Privada" },
+    "ofertas": {
+      "publica": "Pública",
+      "privada": "Privada"
+    },
     "estados": {
       "registrado": "Registrado",
       "preparacion_tecnica": "Preparación técnica",
@@ -208,6 +214,33 @@
     "password": "Contraseña",
     "remitente": "Remitente",
     "guardado": "Guardado ✓"
+  },
+  "tarifas": {
+    "title": "Tarifas",
+    "descargarPlantilla": "Descargar plantilla Excel",
+    "importar": "Importar tarifa desde Excel",
+    "nombre": "Nombre de la tarifa",
+    "vigenteDesde": "Vigente desde",
+    "lineas": "Líneas",
+    "ver": "Ver",
+    "sinTarifas": "No hay tarifas todavía. Descarga la plantilla, rellénala e impórtala.",
+    "errores": "Errores (corrígelos en el Excel y vuelve a subirlo)",
+    "avisos": "Avisos",
+    "resumenImport": "{{lineas}} líneas, {{combos}} combos y {{condiciones}} condiciones listas para importar.",
+    "confirmar": "Confirmar importación",
+    "revision": "Revisión IPC:",
+    "subidaPct": "Subida %",
+    "subidaFija": "Subida fija (€)",
+    "crearRevision": "Crear revisión",
+    "notaRedondeo": "El redondeo a 0,05 € se aplica solo al precio en efectivo.",
+    "codigo": "Código",
+    "precioFacturado": "Facturado al cliente",
+    "canales": {
+      "efectivo": "Efectivo",
+      "tarjetaEmpleado": "Tarjeta empleado",
+      "tarjetaBancaria": "Tarjeta bancaria",
+      "app": "Aplicación"
+    }
   },
   "common": {
     "loading": "Cargando…",

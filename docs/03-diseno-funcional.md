@@ -203,14 +203,22 @@ expediente.
 8. **Aviso de exceso de inversión** a Dirección y Administración cuando el
    coste acumulado supera la propuesta (D25).
 
-## 7. Plantilla Excel de tarifas (D8, D20)
+## 7. Plantilla Excel de tarifas (D8, D20, D30)
 
-Descargable desde la app, hojas: **Productos** (código, nombre, categoría,
-precio, franja/colectivo opcional), **Selecciones de café** (nº, nombre, precio;
-0 € = gratuito con precio facturado al cliente), **Combos** (composición, precio
-especial), **Condiciones especiales** (tipo incl. "otro", descripción, valor).
-Validación fila a fila antes de confirmar. El mismo mecanismo de import se usa
-para la **migración inicial** de clientes y máquinas desde Excel (D24).
+Cada línea de tarifa lleva **cuatro precios** (D30): **efectivo, tarjeta
+empleado, tarjeta bancaria y aplicación**. El redondeo a 0,05 € se aplica
+**solo al precio en efectivo**, tanto en la validación del import (aviso si no
+es múltiplo) como en las revisiones por IPC.
+
+Plantilla descargable desde la app, hojas: **Productos** (código del catálogo,
+4 precios, franja/colectivo opcional), **Selecciones de café** (nº, nombre,
+4 precios; 0 € = gratuito con precio facturado al cliente), **Combos**
+(composición con códigos, 4 precios), **Condiciones** (tipo incl. "otro",
+descripción, valor). Validación fila a fila (códigos contra el catálogo de
+artículos, precios numéricos) antes de confirmar. Las **revisiones IPC**
+(subida fija en € o %) generan una nueva vigencia enlazada a la anterior.
+El mismo mecanismo de import se usa para la **migración inicial** de clientes
+y máquinas desde Excel (D24).
 
 ## 8. Requisitos no funcionales
 

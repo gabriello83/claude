@@ -1,5 +1,8 @@
 {
-  "app": { "name": "DIGIVEND", "tagline": "Gestion des installations de distribution automatique" },
+  "app": {
+    "name": "DIGIVEND",
+    "tagline": "Gestion des installations de distribution automatique"
+  },
   "login": {
     "title": "Connexion",
     "email": "E-mail",
@@ -60,7 +63,10 @@
       "cambio_planograma": "Changement de planogramme",
       "subida_precios": "Hausse de prix"
     },
-    "ofertas": { "publica": "Publique", "privada": "Privée" },
+    "ofertas": {
+      "publica": "Publique",
+      "privada": "Privée"
+    },
     "estados": {
       "registrado": "Enregistré",
       "preparacion_tecnica": "Préparation technique",
@@ -208,6 +214,33 @@
     "password": "Mot de passe",
     "remitente": "Expéditeur",
     "guardado": "Enregistré ✓"
+  },
+  "tarifas": {
+    "title": "Tarifs",
+    "descargarPlantilla": "Télécharger le modèle Excel",
+    "importar": "Importer un tarif depuis Excel",
+    "nombre": "Nom du tarif",
+    "vigenteDesde": "Valable à partir du",
+    "lineas": "Lignes",
+    "ver": "Voir",
+    "sinTarifas": "Aucun tarif pour l'instant. Téléchargez le modèle, remplissez-le et importez-le.",
+    "errores": "Erreurs (corrigez-les dans l'Excel et re-téléversez)",
+    "avisos": "Avertissements",
+    "resumenImport": "{{lineas}} lignes, {{combos}} combos et {{condiciones}} conditions prêtes à importer.",
+    "confirmar": "Confirmer l'importation",
+    "revision": "Révision IPC :",
+    "subidaPct": "Hausse %",
+    "subidaFija": "Hausse fixe (€)",
+    "crearRevision": "Créer la révision",
+    "notaRedondeo": "L'arrondi à 0,05 € ne s'applique qu'au prix en espèces.",
+    "codigo": "Code",
+    "precioFacturado": "Facturé au client",
+    "canales": {
+      "efectivo": "Espèces",
+      "tarjetaEmpleado": "Carte employé",
+      "tarjetaBancaria": "Carte bancaire",
+      "app": "Appli"
+    }
   },
   "common": {
     "loading": "Chargement…",

@@ -197,6 +197,14 @@ textarea {
 .correo-error { background: #f8d7da; }
 .tipo-correo { min-width: 180px; font-size: 0.9rem; font-weight: 600; align-self: center; }
 .alta-ruta { margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px dashed var(--border); }
+.aviso-suave {
+  background: #fff3cd;
+  border: 1px solid #ffe69c;
+  color: #664d03;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  margin: 0.6rem 0;
+}
 .ok {
   background: #d1e7dd;
   border: 1px solid #a3cfbb;

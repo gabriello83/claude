@@ -1,5 +1,8 @@
 {
-  "app": { "name": "DIGIVEND", "tagline": "Vending installation management" },
+  "app": {
+    "name": "DIGIVEND",
+    "tagline": "Vending installation management"
+  },
   "login": {
     "title": "Sign in",
     "email": "Email",
@@ -60,7 +63,10 @@
       "cambio_planograma": "Planogram change",
       "subida_precios": "Price increase"
     },
-    "ofertas": { "publica": "Public", "privada": "Private" },
+    "ofertas": {
+      "publica": "Public",
+      "privada": "Private"
+    },
     "estados": {
       "registrado": "Registered",
       "preparacion_tecnica": "Technical preparation",
@@ -208,6 +214,33 @@
     "password": "Password",
     "remitente": "Sender",
     "guardado": "Saved ✓"
+  },
+  "tarifas": {
+    "title": "Price lists",
+    "descargarPlantilla": "Download Excel template",
+    "importar": "Import price list from Excel",
+    "nombre": "Price list name",
+    "vigenteDesde": "Valid from",
+    "lineas": "Lines",
+    "ver": "View",
+    "sinTarifas": "No price lists yet. Download the template, fill it in and import it.",
+    "errores": "Errors (fix them in the Excel and upload again)",
+    "avisos": "Warnings",
+    "resumenImport": "{{lineas}} lines, {{combos}} combos and {{condiciones}} conditions ready to import.",
+    "confirmar": "Confirm import",
+    "revision": "CPI revision:",
+    "subidaPct": "Increase %",
+    "subidaFija": "Fixed increase (€)",
+    "crearRevision": "Create revision",
+    "notaRedondeo": "Rounding to €0.05 applies only to the cash price.",
+    "codigo": "Code",
+    "precioFacturado": "Billed to customer",
+    "canales": {
+      "efectivo": "Cash",
+      "tarjetaEmpleado": "Employee card",
+      "tarjetaBancaria": "Bank card",
+      "app": "App"
+    }
   },
   "common": {
     "loading": "Loading…",

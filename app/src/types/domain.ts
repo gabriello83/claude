@@ -215,6 +215,49 @@ export interface Equipamiento {
   estadoSolicitud: "pendiente" | "solicitado" | "recibido";
 }
 
+// ---- Tarifas (D8, D20, D30) ----
+
+/** Cuatro precios por línea (D30). El redondeo a 0,05 € solo aplica al efectivo. */
+export interface PreciosCanales {
+  efectivo: number;
+  tarjetaEmpleado: number;
+  tarjetaBancaria: number;
+  app: number;
+}
+
+export interface LineaTarifa {
+  tipo: "producto" | "seleccion";
+  /** Código de artículo del catálogo, o nº de selección de café */
+  codigo: string;
+  nombre: string;
+  precios: PreciosCanales;
+  /** Café gratuito para el usuario: precio que se factura al cliente (D10) */
+  precioFacturadoCliente?: number;
+  franjaHoraria?: string; // D20
+  colectivo?: string; // D20
+}
+
+export interface ComboTarifa {
+  nombre: string;
+  codigos: string[];
+  precios: PreciosCanales;
+}
+
+export interface Tarifa {
+  id: string;
+  nombre: string;
+  clienteId?: string;
+  clienteNombre?: string;
+  vigenteDesde: string;
+  vigenteHasta?: string;
+  lineas: LineaTarifa[];
+  combos: ComboTarifa[];
+  condiciones: CondicionEspecial[];
+  /** ID de la tarifa origen si es una revisión (IPC, D20) */
+  revisionDe?: string;
+  creadoEn: string;
+}
+
 // ---- Planograma (D19) ----
 
 export type TipoEspiral = "simple" | "doble" | "triple";

@@ -1,5 +1,8 @@
 {
-  "app": { "name": "DIGIVEND", "tagline": "Gestione delle installazioni di vending" },
+  "app": {
+    "name": "DIGIVEND",
+    "tagline": "Gestione delle installazioni di vending"
+  },
   "login": {
     "title": "Accedi",
     "email": "Email",
@@ -60,7 +63,10 @@
       "cambio_planograma": "Cambio planogramma",
       "subida_precios": "Aumento prezzi"
     },
-    "ofertas": { "publica": "Pubblica", "privada": "Privata" },
+    "ofertas": {
+      "publica": "Pubblica",
+      "privada": "Privata"
+    },
     "estados": {
       "registrado": "Registrata",
       "preparacion_tecnica": "Preparazione tecnica",
@@ -208,6 +214,33 @@
     "password": "Password",
     "remitente": "Mittente",
     "guardado": "Salvato ✓"
+  },
+  "tarifas": {
+    "title": "Listini",
+    "descargarPlantilla": "Scarica modello Excel",
+    "importar": "Importa listino da Excel",
+    "nombre": "Nome del listino",
+    "vigenteDesde": "Valido dal",
+    "lineas": "Righe",
+    "ver": "Vedi",
+    "sinTarifas": "Nessun listino ancora. Scarica il modello, compilalo e importalo.",
+    "errores": "Errori (correggili nell'Excel e ricaricalo)",
+    "avisos": "Avvisi",
+    "resumenImport": "{{lineas}} righe, {{combos}} combo e {{condiciones}} condizioni pronte per l'importazione.",
+    "confirmar": "Conferma importazione",
+    "revision": "Revisione ISTAT:",
+    "subidaPct": "Aumento %",
+    "subidaFija": "Aumento fisso (€)",
+    "crearRevision": "Crea revisione",
+    "notaRedondeo": "L'arrotondamento a 0,05 € si applica solo al prezzo in contanti.",
+    "codigo": "Codice",
+    "precioFacturado": "Fatturato al cliente",
+    "canales": {
+      "efectivo": "Contanti",
+      "tarjetaEmpleado": "Tessera dipendente",
+      "tarjetaBancaria": "Carta bancaria",
+      "app": "App"
+    }
   },
   "common": {
     "loading": "Caricamento…",

@@ -14,6 +14,7 @@ export function Layout() {
         <nav>
           <NavLink to="/">{t("nav.dashboard")}</NavLink>
           <NavLink to="/expedientes">{t("nav.expedientes")}</NavLink>
+          <NavLink to="/tarifas">{t("nav.tarifas")}</NavLink>
           <NavLink to="/catalogo">{t("nav.catalogo")}</NavLink>
           {sesion?.roles.includes("admin") && (
             <NavLink to="/configuracion">{t("nav.configuracion")}</NavLink>
