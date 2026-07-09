@@ -74,7 +74,8 @@
       "instalacion": "Installation",
       "alta_en_ruta": "Affectation à la tournée",
       "completado": "Terminé",
-      "cancelado": "Annulé"
+      "cancelado": "Annulé",
+      "ejecucion": "Exécution"
     }
   },
   "nuevoExpediente": {
@@ -112,7 +113,12 @@
     "condiciones": "Conditions spéciales",
     "tipoCondicion": "Type",
     "addCondicion": "+ Ajouter une condition",
-    "crear": "Créer le dossier"
+    "crear": "Créer le dossier",
+    "tipoExpediente": "Type de dossier",
+    "clienteModo": "Client",
+    "clienteNuevo": "Nouveau client",
+    "clienteExistente": "Client existant",
+    "seleccionarCliente": "Sélectionner le client"
   },
   "detalle": {
     "avanzar": "Passer à l'étape suivante",
@@ -140,7 +146,14 @@
     "enviarOrdenInstalacion": "Envoyer l'ordre d'installation à l'installateur",
     "confirmarInstalacion": "Confirmer l'installation réalisée",
     "enviarAltaRuta": "Envoyer l'e-mail d'affectation à la tournée (tournée, approvisionneur, technicien)",
-    "rellenarERP": "Remplir l'ERP et vérifier la création"
+    "rellenarERP": "Remplir l'ERP et vérifier la création",
+    "prepararRetirada": "Planifier le retrait des machines",
+    "avisarAdministracion": "Prévenir l'administration du changement",
+    "enviarOrdenIntervencion": "Envoyer l'ordre d'intervention à l'installateur",
+    "confirmarIntervencion": "Confirmer l'intervention réalisée",
+    "bajaRuta": "Envoyer l'e-mail de retrait de la tournée",
+    "nuevoPlanograma": "Créer le nouveau planogramme et la fiche de changement",
+    "nuevaTarifa": "Créer la révision du tarif et la fiche de changement de prix"
   },
   "perifericos": {
     "monedero": "Monnayeur",

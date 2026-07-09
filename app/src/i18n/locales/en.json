@@ -74,7 +74,8 @@
       "instalacion": "Installation",
       "alta_en_ruta": "Route assignment",
       "completado": "Completed",
-      "cancelado": "Cancelled"
+      "cancelado": "Cancelled",
+      "ejecucion": "Execution"
     }
   },
   "nuevoExpediente": {
@@ -112,7 +113,12 @@
     "condiciones": "Special conditions",
     "tipoCondicion": "Type",
     "addCondicion": "+ Add condition",
-    "crear": "Create work order"
+    "crear": "Create work order",
+    "tipoExpediente": "Work order type",
+    "clienteModo": "Customer",
+    "clienteNuevo": "New customer",
+    "clienteExistente": "Existing customer",
+    "seleccionarCliente": "Select customer"
   },
   "detalle": {
     "avanzar": "Move to next step",
@@ -140,7 +146,14 @@
     "enviarOrdenInstalacion": "Send the installation order to the installer",
     "confirmarInstalacion": "Confirm the completed installation",
     "enviarAltaRuta": "Send the route assignment email (route, replenisher, technician)",
-    "rellenarERP": "Fill in the ERP and verify the setup"
+    "rellenarERP": "Fill in the ERP and verify the setup",
+    "prepararRetirada": "Plan the machine removal",
+    "avisarAdministracion": "Notify administration of the change",
+    "enviarOrdenIntervencion": "Send the work order to the installer",
+    "confirmarIntervencion": "Confirm the completed work",
+    "bajaRuta": "Send the route removal email",
+    "nuevoPlanograma": "Create the new planogram and the change sheet",
+    "nuevaTarifa": "Create the price list revision and the price change sheet"
   },
   "perifericos": {
     "monedero": "Coin changer",

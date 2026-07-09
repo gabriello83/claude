@@ -74,7 +74,8 @@
       "instalacion": "Installazione",
       "alta_en_ruta": "Assegnazione al giro",
       "completado": "Completata",
-      "cancelado": "Annullata"
+      "cancelado": "Annullata",
+      "ejecucion": "Esecuzione"
     }
   },
   "nuevoExpediente": {
@@ -112,7 +113,12 @@
     "condiciones": "Condizioni speciali",
     "tipoCondicion": "Tipo",
     "addCondicion": "+ Aggiungi condizione",
-    "crear": "Crea pratica"
+    "crear": "Crea pratica",
+    "tipoExpediente": "Tipo di pratica",
+    "clienteModo": "Cliente",
+    "clienteNuevo": "Nuovo cliente",
+    "clienteExistente": "Cliente esistente",
+    "seleccionarCliente": "Seleziona cliente"
   },
   "detalle": {
     "avanzar": "Passa alla fase successiva",
@@ -140,7 +146,14 @@
     "enviarOrdenInstalacion": "Inviare l'ordine di installazione all'installatore",
     "confirmarInstalacion": "Confermare l'installazione eseguita",
     "enviarAltaRuta": "Inviare l'email di assegnazione al giro (giro, rifornitore, tecnico)",
-    "rellenarERP": "Compilare l'ERP e verificare l'attivazione"
+    "rellenarERP": "Compilare l'ERP e verificare l'attivazione",
+    "prepararRetirada": "Pianificare il ritiro delle macchine",
+    "avisarAdministracion": "Avvisare l'amministrazione del cambiamento",
+    "enviarOrdenIntervencion": "Inviare l'ordine di intervento all'installatore",
+    "confirmarIntervencion": "Confermare l'intervento eseguito",
+    "bajaRuta": "Inviare l'email di rimozione dal giro",
+    "nuevoPlanograma": "Creare il nuovo planogramma e la scheda di cambio",
+    "nuevaTarifa": "Creare la revisione del listino e la scheda di cambio prezzi"
   },
   "perifericos": {
     "monedero": "Gettoniera",

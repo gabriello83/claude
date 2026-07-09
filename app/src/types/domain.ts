@@ -99,6 +99,7 @@ export type EstadoExpediente =
   | "preparacion_tecnica"
   | "alta_administrativa"
   | "instalacion"
+  | "ejecucion" // intervención en retiradas, sustituciones y cambios (D22)
   | "alta_en_ruta"
   | "completado"
   | "cancelado";

@@ -32,7 +32,10 @@ export const col = {
 };
 
 export interface NuevoExpedienteInput {
-  cliente: Omit<Cliente, "id">;
+  /** Cliente nuevo (instalaciones)… */
+  cliente?: Omit<Cliente, "id">;
+  /** …o cliente ya existente (retiradas, sustituciones, cambios — D22) */
+  clienteExistente?: { id: string; nombre: string };
   expediente: Omit<
     Expediente,
     "id" | "clienteId" | "clienteNombre" | "estado" | "tareas" | "lineasCoste" | "creadoEn"
@@ -42,9 +45,10 @@ export interface NuevoExpedienteInput {
 }
 
 /**
- * Registro de la oferta ganada (paso 1): crea cliente + expediente + máquinas
- * + equipamiento en un batch. El equipamiento genera automáticamente sus
- * líneas de coste para el control de inversión (D25/D26).
+ * Registro del expediente (paso 1): crea cliente (si es nuevo) + expediente +
+ * máquinas + equipamiento en un batch. El equipamiento genera automáticamente
+ * sus líneas de coste para el control de inversión (D25/D26). Las tareas
+ * iniciales dependen del tipo de expediente (D22).
  */
 export async function crearExpediente(
   firestore: Firestore,
@@ -53,8 +57,19 @@ export async function crearExpediente(
 ): Promise<string> {
   const batch = writeBatch(firestore);
 
-  const clienteRef = doc(col.clientes(tenantId));
-  batch.set(clienteRef, input.cliente);
+  let clienteId: string;
+  let clienteNombre: string;
+  if (input.clienteExistente) {
+    clienteId = input.clienteExistente.id;
+    clienteNombre = input.clienteExistente.nombre;
+  } else if (input.cliente) {
+    const clienteRef = doc(col.clientes(tenantId));
+    batch.set(clienteRef, input.cliente);
+    clienteId = clienteRef.id;
+    clienteNombre = input.cliente.nombre;
+  } else {
+    throw new Error("Falta el cliente del expediente");
+  }
 
   const lineasCoste: LineaCoste[] = input.equipamiento.map((eq) => ({
     tipo: "equipamiento",
@@ -66,10 +81,10 @@ export async function crearExpediente(
   const expedienteRef = doc(col.expedientes(tenantId));
   const expediente: Omit<Expediente, "id"> = {
     ...input.expediente,
-    clienteId: clienteRef.id,
-    clienteNombre: input.cliente.nombre,
+    clienteId,
+    clienteNombre,
     estado: "registrado",
-    tareas: tareasParaEstado("registrado"),
+    tareas: tareasParaEstado(input.expediente.tipo, "registrado"),
     lineasCoste,
     creadoEn: new Date().toISOString(),
   };

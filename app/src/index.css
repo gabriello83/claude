@@ -125,6 +125,7 @@ th { background: #eef2f6; position: sticky; top: 0; }
 .estado-preparacion_tecnica { background: #cfe2ff; }
 .estado-alta_administrativa { background: #e2d9f3; }
 .estado-instalacion { background: #d1e7dd; }
+.estado-ejecucion { background: #ffe5d0; }
 .estado-alta_en_ruta { background: #d2f4ea; }
 .estado-completado { background: #198754; color: #fff; }
 .estado-cancelado { background: #6c757d; color: #fff; }

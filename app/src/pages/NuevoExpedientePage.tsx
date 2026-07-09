@@ -7,6 +7,7 @@ import { col, crearExpediente } from "@/lib/db";
 import { useAuth } from "@/auth/AuthContext";
 import type {
   Canon,
+  Cliente,
   CondicionEspecial,
   Equipamiento,
   MaquinaExpediente,
@@ -14,7 +15,16 @@ import type {
   Periferico,
   TipoCondicionEspecial,
   TipoEquipamiento,
+  TipoExpediente,
 } from "@/types/domain";
+
+const TIPOS_EXPEDIENTE: TipoExpediente[] = [
+  "instalacion",
+  "retirada",
+  "sustitucion",
+  "cambio_planograma",
+  "subida_precios",
+];
 
 const PERIFERICOS: Periferico[] = [
   "monedero",
@@ -51,6 +61,12 @@ export function NuevoExpedientePage() {
   const [modelos, setModelos] = useState<ModeloMaquina[]>([]);
   const [guardando, setGuardando] = useState(false);
 
+  // Tipo de expediente (D22) y modo de cliente
+  const [tipoExp, setTipoExp] = useState<TipoExpediente>("instalacion");
+  const [clienteModo, setClienteModo] = useState<"nuevo" | "existente">("nuevo");
+  const [clientes, setClientes] = useState<(Cliente & { id: string })[]>([]);
+  const [clienteExistenteId, setClienteExistenteId] = useState("");
+
   // Cliente
   const [nombre, setNombre] = useState("");
   const [direccion, setDireccion] = useState("");
@@ -78,7 +94,16 @@ export function NuevoExpedientePage() {
     getDocs(query(col.modelosMaquina(sesion.tenantId), orderBy("codigo"))).then((snap) =>
       setModelos(snap.docs.map((d) => ({ id: d.id, ...d.data() }) as ModeloMaquina)),
     );
+    getDocs(col.clientes(sesion.tenantId)).then((snap) =>
+      setClientes(snap.docs.map((d) => ({ id: d.id, ...d.data() }) as Cliente & { id: string })),
+    );
   }, [sesion]);
+
+  const cambiarTipo = (tipo: TipoExpediente) => {
+    setTipoExp(tipo);
+    // Retiradas, sustituciones y cambios son sobre clientes ya instalados
+    setClienteModo(tipo === "instalacion" ? "nuevo" : "existente");
+  };
 
   const addMaquina = () =>
     setMaquinas((m) => [
@@ -120,14 +145,23 @@ export function NuevoExpedientePage() {
         ...(canonPorcentaje ? { porcentajeVariable: Number(canonPorcentaje) } : {}),
         ...(canonNotas ? { notas: canonNotas } : {}),
       };
+      const existente = clientes.find((c) => c.id === clienteExistenteId);
       const id = await crearExpediente(db, sesion.tenantId, {
-        cliente: {
-          nombre,
-          direccionInstalacion: direccion,
-          contacto: { nombre: contactoNombre, telefono: contactoTelefono, email: contactoEmail },
-        },
+        ...(clienteModo === "existente" && existente
+          ? { clienteExistente: { id: existente.id, nombre: existente.nombre } }
+          : {
+              cliente: {
+                nombre,
+                direccionInstalacion: direccion,
+                contacto: {
+                  nombre: contactoNombre,
+                  telefono: contactoTelefono,
+                  email: contactoEmail,
+                },
+              },
+            }),
         expediente: {
-          tipo: "instalacion",
+          tipo: tipoExp,
           tipoOferta,
           canon,
           condicionesEspeciales: condiciones,
@@ -156,8 +190,14 @@ export function NuevoExpedientePage() {
           <legend>{t("nuevoExpediente.cliente")}</legend>
           <div className="fila">
             <label>
-              {t("nuevoExpediente.nombreCliente")}
-              <input value={nombre} onChange={(e) => setNombre(e.target.value)} required />
+              {t("nuevoExpediente.tipoExpediente")}
+              <select value={tipoExp} onChange={(e) => cambiarTipo(e.target.value as TipoExpediente)}>
+                {TIPOS_EXPEDIENTE.map((tp) => (
+                  <option key={tp} value={tp}>
+                    {t(`expedientes.tipos.${tp}`)}
+                  </option>
+                ))}
+              </select>
             </label>
             <label>
               {t("nuevoExpediente.tipoOferta")}
@@ -169,29 +209,67 @@ export function NuevoExpedientePage() {
                 <option value="publica">{t("expedientes.ofertas.publica")}</option>
               </select>
             </label>
-          </div>
-          <label>
-            {t("nuevoExpediente.direccion")}
-            <input value={direccion} onChange={(e) => setDireccion(e.target.value)} required />
-          </label>
-          <div className="fila">
             <label>
-              {t("nuevoExpediente.contacto")}
-              <input value={contactoNombre} onChange={(e) => setContactoNombre(e.target.value)} />
-            </label>
-            <label>
-              {t("nuevoExpediente.telefono")}
-              <input value={contactoTelefono} onChange={(e) => setContactoTelefono(e.target.value)} />
-            </label>
-            <label>
-              {t("nuevoExpediente.email")}
-              <input
-                type="email"
-                value={contactoEmail}
-                onChange={(e) => setContactoEmail(e.target.value)}
-              />
+              {t("nuevoExpediente.clienteModo")}
+              <select
+                value={clienteModo}
+                onChange={(e) => setClienteModo(e.target.value as "nuevo" | "existente")}
+              >
+                <option value="nuevo">{t("nuevoExpediente.clienteNuevo")}</option>
+                <option value="existente">{t("nuevoExpediente.clienteExistente")}</option>
+              </select>
             </label>
           </div>
+          {clienteModo === "existente" ? (
+            <label>
+              {t("nuevoExpediente.seleccionarCliente")}
+              <select
+                value={clienteExistenteId}
+                onChange={(e) => setClienteExistenteId(e.target.value)}
+                required
+              >
+                <option value="" disabled>
+                  —
+                </option>
+                {clientes.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.nombre} — {c.direccionInstalacion}
+                  </option>
+                ))}
+              </select>
+            </label>
+          ) : (
+            <>
+              <div className="fila">
+                <label className="crece">
+                  {t("nuevoExpediente.nombreCliente")}
+                  <input value={nombre} onChange={(e) => setNombre(e.target.value)} required />
+                </label>
+              </div>
+              <label>
+                {t("nuevoExpediente.direccion")}
+                <input value={direccion} onChange={(e) => setDireccion(e.target.value)} required />
+              </label>
+              <div className="fila">
+                <label>
+                  {t("nuevoExpediente.contacto")}
+                  <input value={contactoNombre} onChange={(e) => setContactoNombre(e.target.value)} />
+                </label>
+                <label>
+                  {t("nuevoExpediente.telefono")}
+                  <input value={contactoTelefono} onChange={(e) => setContactoTelefono(e.target.value)} />
+                </label>
+                <label>
+                  {t("nuevoExpediente.email")}
+                  <input
+                    type="email"
+                    value={contactoEmail}
+                    onChange={(e) => setContactoEmail(e.target.value)}
+                  />
+                </label>
+              </div>
+            </>
+          )}
           <div className="fila">
             <label>
               {t("nuevoExpediente.fechaPrevista")}
@@ -383,7 +461,13 @@ export function NuevoExpedientePage() {
           </button>
         </fieldset>
 
-        <button type="submit" disabled={guardando || !nombre || !direccion}>
+        <button
+          type="submit"
+          disabled={
+            guardando ||
+            (clienteModo === "nuevo" ? !nombre || !direccion : !clienteExistenteId)
+          }
+        >
           {t("nuevoExpediente.crear")}
         </button>
       </form>

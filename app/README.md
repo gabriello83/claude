@@ -40,7 +40,12 @@ firebase deploy --only hosting,firestore:rules
 - `firestore.rules` — aislamiento por tenant y permisos por rol
 - `scripts/seed-catalogo.mjs` — import del catálogo (D27)
 
-## Fases siguientes
+## Estado de las fases (`docs/06-propuesta-tecnica.md §8`)
 
-F2 expedientes y workflow · F3 correos y PDF · F4 tarifas Excel · F5 módulo
-planograma · F6 otros workflows + piloto (ver `docs/06-propuesta-tecnica.md §8`).
+- ✅ F1 Fundaciones: auth multi-tenant, i18n ES/EN/IT/FR, catálogo (202 modelos)
+- ✅ F2 Expedientes y workflow: oferta ganada, tareas por rol, propuesta de inversión
+- ✅ F3 Correos: plantillas por tenant, cola `/tenants/{t}/mail` + Functions SMTP
+- ✅ F4 Tarifas: plantilla Excel, import validado, 4 precios por canal, revisiones IPC
+- ✅ F5 Planogramas (módulo licenciable): editor visual, plantillas, hojas imprimibles
+- ✅ F6 Workflows de retirada, sustitución, cambio de planograma y subida de precios
+- ⏳ Despliegue: crear proyectos `digivend-dev`/`digivend-prod` y pilotar

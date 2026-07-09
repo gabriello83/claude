@@ -74,7 +74,8 @@
       "instalacion": "Instalación",
       "alta_en_ruta": "Alta en ruta",
       "completado": "Completado",
-      "cancelado": "Cancelado"
+      "cancelado": "Cancelado",
+      "ejecucion": "Ejecución"
     }
   },
   "nuevoExpediente": {
@@ -112,7 +113,12 @@
     "condiciones": "Condiciones especiales",
     "tipoCondicion": "Tipo",
     "addCondicion": "+ Añadir condición",
-    "crear": "Crear expediente"
+    "crear": "Crear expediente",
+    "tipoExpediente": "Tipo de expediente",
+    "clienteModo": "Cliente",
+    "clienteNuevo": "Cliente nuevo",
+    "clienteExistente": "Cliente existente",
+    "seleccionarCliente": "Seleccionar cliente"
   },
   "detalle": {
     "avanzar": "Avanzar al siguiente paso",
@@ -140,7 +146,14 @@
     "enviarOrdenInstalacion": "Enviar la orden de instalación al instalador",
     "confirmarInstalacion": "Confirmar la instalación realizada",
     "enviarAltaRuta": "Enviar el correo de alta en ruta (ruta, reponedor, técnico)",
-    "rellenarERP": "Rellenar el ERP y verificar el alta"
+    "rellenarERP": "Rellenar el ERP y verificar el alta",
+    "prepararRetirada": "Planificar la retirada de las máquinas",
+    "avisarAdministracion": "Avisar a administración del cambio",
+    "enviarOrdenIntervencion": "Enviar la orden de intervención al instalador",
+    "confirmarIntervencion": "Confirmar la intervención realizada",
+    "bajaRuta": "Enviar el correo de baja en ruta",
+    "nuevoPlanograma": "Crear el nuevo planograma y la hoja de cambio",
+    "nuevaTarifa": "Crear la revisión de tarifa y la hoja de cambio de precios"
   },
   "perifericos": {
     "monedero": "Monedero",

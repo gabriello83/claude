@@ -16,10 +16,10 @@ import { db } from "@/lib/firebase";
 import { useAuth, tieneRol } from "@/auth/AuthContext";
 import { encolarCorreo, type CorreoEncolado } from "@/lib/correos";
 import {
-  ORDEN_ESTADOS,
   avanzar,
   costeTotal,
   excesoInversion,
+  flujoDe,
   puedeAvanzar,
 } from "@/lib/workflow";
 import type {
@@ -43,6 +43,8 @@ const CORREOS_POR_ESTADO: Partial<Record<EstadoExpediente, TipoCorreo[]>> = {
   ],
   alta_administrativa: ["peticion_cambio"],
   instalacion: ["orden_instalacion"],
+  // Retiradas, sustituciones y cambios: la orden al instalador se reutiliza
+  ejecucion: ["orden_instalacion"],
 };
 
 export function ExpedienteDetallePage() {
@@ -230,17 +232,18 @@ export function ExpedienteDetallePage() {
     <section>
       <div className="titulo-con-accion">
         <h1>{expediente.clienteNombre}</h1>
+        <span className="badge">{t(`expedientes.tipos.${expediente.tipo}`)}</span>
         <span className={`badge estado-${expediente.estado}`}>
           {t(`expedientes.estados.${expediente.estado}`)}
         </span>
       </div>
 
       <ol className="pasos">
-        {ORDEN_ESTADOS.map((paso) => (
+        {flujoDe(expediente).map((paso, i, flujo) => (
           <li
             key={paso}
             className={
-              ORDEN_ESTADOS.indexOf(paso) < ORDEN_ESTADOS.indexOf(expediente.estado)
+              i < flujo.indexOf(expediente.estado)
                 ? "hecho"
                 : paso === expediente.estado
                   ? "actual"
