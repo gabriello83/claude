@@ -1,6 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useAuth, tieneRol } from "@/auth/AuthContext";
+import { useAuth } from "@/auth/AuthContext";
 import { SelectorIdioma } from "./SelectorIdioma";
 
 export function Layout() {
