@@ -37,7 +37,9 @@ En [Cloud Shell](https://shell.cloud.google.com) (trae Node, git y firebase-tool
 
 ```bash
 git clone https://github.com/gabriello83/claude.git
-cd claude/app
+cd claude
+git checkout claude/vending-installation-workflow-4quvg1
+cd app
 npm install
 gcloud config set project digivend-dev
 
