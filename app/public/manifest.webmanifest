@@ -1,6 +1,6 @@
 {
-  "name": "DIGIVEND",
-  "short_name": "DIGIVEND",
+  "name": "InstalDIGI",
+  "short_name": "InstalDIGI",
   "description": "Gestión de instalaciones de vending",
   "start_url": "/",
   "display": "standalone",
