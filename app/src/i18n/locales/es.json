@@ -43,10 +43,139 @@
     "expedientesEnCurso": "Expedientes en curso",
     "sinTareas": "No tienes tareas pendientes"
   },
+  "expedientes": {
+    "title": "Expedientes",
+    "nuevo": "+ Registrar oferta ganada",
+    "empty": "No hay expedientes todavía.",
+    "cliente": "Cliente",
+    "tipo": "Tipo",
+    "tipoOferta": "Oferta",
+    "estado": "Estado",
+    "tareasPendientes": "Tareas pendientes",
+    "creado": "Creado",
+    "tipos": {
+      "instalacion": "Instalación",
+      "retirada": "Retirada",
+      "sustitucion": "Sustitución",
+      "cambio_planograma": "Cambio de planograma",
+      "subida_precios": "Subida de precios"
+    },
+    "ofertas": { "publica": "Pública", "privada": "Privada" },
+    "estados": {
+      "registrado": "Registrado",
+      "preparacion_tecnica": "Preparación técnica",
+      "alta_administrativa": "Alta administrativa",
+      "instalacion": "Instalación",
+      "alta_en_ruta": "Alta en ruta",
+      "completado": "Completado",
+      "cancelado": "Cancelado"
+    }
+  },
+  "nuevoExpediente": {
+    "title": "Registrar oferta ganada",
+    "cliente": "Cliente y oferta",
+    "nombreCliente": "Nombre del cliente",
+    "tipoOferta": "Tipo de oferta",
+    "direccion": "Dirección de instalación",
+    "contacto": "Persona de contacto",
+    "telefono": "Teléfono",
+    "email": "Email",
+    "fechaPrevista": "Fecha prevista de instalación",
+    "requisitos": "Requisitos de la ubicación",
+    "requisitosHint": "Toma de agua, corriente, accesos…",
+    "maquinas": "Máquinas",
+    "modelo": "Modelo",
+    "estadoMaquina": "Estado",
+    "nueva": "Nueva",
+    "usada": "Usada",
+    "perifericos": "Periféricos",
+    "telemetria": "Telemetría",
+    "addMaquina": "+ Añadir máquina",
+    "equipamiento": "Equipamiento adicional",
+    "equipamientoAyuda": "Muebles, panelados, microondas, fuentes… con proveedor y coste. Computa en el control de inversión.",
+    "tipoEquipamiento": "Tipo",
+    "descripcion": "Descripción",
+    "proveedor": "Proveedor",
+    "coste": "Coste (€)",
+    "addEquipamiento": "+ Añadir equipamiento",
+    "canon": "Canon (informativo para administración)",
+    "tipoCanon": "Tipo de canon",
+    "importeFijo": "Importe fijo (€)",
+    "porcentaje": "% sobre ventas",
+    "notas": "Notas",
+    "condiciones": "Condiciones especiales",
+    "tipoCondicion": "Tipo",
+    "addCondicion": "+ Añadir condición",
+    "crear": "Crear expediente"
+  },
+  "detalle": {
+    "avanzar": "Avanzar al siguiente paso",
+    "tareas": "Tareas del expediente",
+    "inversion": "Propuesta de inversión",
+    "inversionImporte": "Propuesta de inversión: {{importe}}",
+    "sinInversion": "Sin propuesta de inversión",
+    "inversionPendiente": "Pendiente de respuesta de administración",
+    "hayInversion": "¿Hay propuesta de inversión?",
+    "importe": "Importe (€)",
+    "costes": "Costes",
+    "concepto": "Concepto",
+    "condiciones": "Canon y condiciones",
+    "excesoInversion": "⚠ El coste supera la propuesta de inversión en {{exceso}}. Se avisará a Dirección y Administración."
+  },
+  "tareas": {
+    "responderInversion": "Responder si hay propuesta de inversión y registrar sus detalles",
+    "revisarDatosOferta": "Revisar los datos de la oferta registrada",
+    "prepararMaquinas": "Preparar las máquinas (nº de serie, monedero, contador)",
+    "solicitarProveedores": "Solicitar disponibilidad a proveedores (máquinas, periféricos, equipamiento)",
+    "crearPlanogramas": "Crear los planogramas y la hoja de taller",
+    "pedirCambio": "Pedir el cambio para los monederos a administración",
+    "altaClienteERP": "Dar de alta el cliente en el ERP",
+    "prepararCambio": "Preparar el cambio solicitado",
+    "enviarOrdenInstalacion": "Enviar la orden de instalación al instalador",
+    "confirmarInstalacion": "Confirmar la instalación realizada",
+    "enviarAltaRuta": "Enviar el correo de alta en ruta (ruta, reponedor, técnico)",
+    "rellenarERP": "Rellenar el ERP y verificar el alta"
+  },
+  "perifericos": {
+    "monedero": "Monedero",
+    "lector_tarjeta": "Lector de tarjeta",
+    "billetero": "Billetero",
+    "llave_privada": "Tarjeta/llave privada",
+    "app_pago": "App de pago"
+  },
+  "equipamiento": {
+    "mueble": "Mueble",
+    "panelado": "Panelado",
+    "microondas": "Microondas",
+    "fuente_agua": "Fuente de agua",
+    "otro": "Otro"
+  },
+  "canon": {
+    "sin_canon": "Sin canon",
+    "fijo": "Canon fijo",
+    "variable": "Canon variable",
+    "mixto": "Canon mixto"
+  },
+  "condiciones": {
+    "cafe_facturado": "Café gratuito facturado al cliente",
+    "combo": "Combo",
+    "gratuidad_diaria": "Gratuidad por usuario y día",
+    "dia_gratis_anual": "Día de café gratis al año",
+    "lote_navidad": "Lote de Navidad",
+    "otro": "Otra"
+  },
+  "costes": {
+    "maquina": "Máquina",
+    "periferico": "Periférico",
+    "equipamiento": "Equipamiento",
+    "instalacion": "Instalación"
+  },
   "common": {
     "loading": "Cargando…",
     "save": "Guardar",
     "cancel": "Cancelar",
-    "language": "Idioma"
+    "language": "Idioma",
+    "si": "Sí",
+    "no": "No"
   }
 }

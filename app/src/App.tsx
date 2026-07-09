@@ -5,6 +5,9 @@ import { Layout } from "@/components/Layout";
 import { LoginPage } from "@/pages/LoginPage";
 import { DashboardPage } from "@/pages/DashboardPage";
 import { CatalogoPage } from "@/pages/CatalogoPage";
+import { ExpedientesPage } from "@/pages/ExpedientesPage";
+import { NuevoExpedientePage } from "@/pages/NuevoExpedientePage";
+import { ExpedienteDetallePage } from "@/pages/ExpedienteDetallePage";
 
 function RutasPrivadas() {
   const { sesion, cargando } = useAuth();
@@ -23,6 +26,9 @@ export default function App() {
           <Route element={<RutasPrivadas />}>
             <Route path="/" element={<DashboardPage />} />
             <Route path="/catalogo" element={<CatalogoPage />} />
+            <Route path="/expedientes" element={<ExpedientesPage />} />
+            <Route path="/expedientes/nuevo" element={<NuevoExpedientePage />} />
+            <Route path="/expedientes/:id" element={<ExpedienteDetallePage />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

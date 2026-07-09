@@ -53,15 +53,15 @@ service cloud.firestore {
         allow create, update: if esDelTenant(tenantId) &&
           (tieneRol('comercial') || tieneRol('administracion'));
         allow delete: if esDelTenant(tenantId) && tieneRol('admin');
+      }
 
-        match /expedientes/{expedienteId}/{doc=**} {
-          allow read: if esDelTenant(tenantId);
-          // v1: escritura por roles implicados; las transiciones de estado
-          // y líneas de coste pasarán a Functions en la Fase 2.
-          allow write: if esDelTenant(tenantId) &&
-            (tieneRol('comercial') || tieneRol('tecnico') ||
-             tieneRol('administracion') || tieneRol('operaciones'));
-        }
+      match /expedientes/{expedienteId}/{doc=**} {
+        allow read: if esDelTenant(tenantId);
+        // v1 (Fase 2): escritura por los roles implicados; las transiciones
+        // de estado y los correos pasarán a Functions en la Fase 3.
+        allow write: if esDelTenant(tenantId) &&
+          (tieneRol('comercial') || tieneRol('tecnico') ||
+           tieneRol('administracion') || tieneRol('operaciones'));
       }
 
       match /tarifas/{doc=**} {

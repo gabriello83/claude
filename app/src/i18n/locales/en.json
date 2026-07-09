@@ -43,10 +43,139 @@
     "expedientesEnCurso": "Work orders in progress",
     "sinTareas": "You have no pending tasks"
   },
+  "expedientes": {
+    "title": "Work orders",
+    "nuevo": "+ Register won offer",
+    "empty": "No work orders yet.",
+    "cliente": "Customer",
+    "tipo": "Type",
+    "tipoOferta": "Offer",
+    "estado": "Status",
+    "tareasPendientes": "Pending tasks",
+    "creado": "Created",
+    "tipos": {
+      "instalacion": "Installation",
+      "retirada": "Removal",
+      "sustitucion": "Replacement",
+      "cambio_planograma": "Planogram change",
+      "subida_precios": "Price increase"
+    },
+    "ofertas": { "publica": "Public", "privada": "Private" },
+    "estados": {
+      "registrado": "Registered",
+      "preparacion_tecnica": "Technical preparation",
+      "alta_administrativa": "Administrative setup",
+      "instalacion": "Installation",
+      "alta_en_ruta": "Route assignment",
+      "completado": "Completed",
+      "cancelado": "Cancelled"
+    }
+  },
+  "nuevoExpediente": {
+    "title": "Register won offer",
+    "cliente": "Customer and offer",
+    "nombreCliente": "Customer name",
+    "tipoOferta": "Offer type",
+    "direccion": "Installation address",
+    "contacto": "Contact person",
+    "telefono": "Phone",
+    "email": "Email",
+    "fechaPrevista": "Planned installation date",
+    "requisitos": "Site requirements",
+    "requisitosHint": "Water supply, power, access…",
+    "maquinas": "Machines",
+    "modelo": "Model",
+    "estadoMaquina": "Condition",
+    "nueva": "New",
+    "usada": "Used",
+    "perifericos": "Peripherals",
+    "telemetria": "Telemetry",
+    "addMaquina": "+ Add machine",
+    "equipamiento": "Additional equipment",
+    "equipamientoAyuda": "Furniture, panelling, microwaves, water fountains… with supplier and cost. Counts towards the investment control.",
+    "tipoEquipamiento": "Type",
+    "descripcion": "Description",
+    "proveedor": "Supplier",
+    "coste": "Cost (€)",
+    "addEquipamiento": "+ Add equipment",
+    "canon": "Fee (informative for administration)",
+    "tipoCanon": "Fee type",
+    "importeFijo": "Fixed amount (€)",
+    "porcentaje": "% of sales",
+    "notas": "Notes",
+    "condiciones": "Special conditions",
+    "tipoCondicion": "Type",
+    "addCondicion": "+ Add condition",
+    "crear": "Create work order"
+  },
+  "detalle": {
+    "avanzar": "Move to next step",
+    "tareas": "Work order tasks",
+    "inversion": "Investment proposal",
+    "inversionImporte": "Investment proposal: {{importe}}",
+    "sinInversion": "No investment proposal",
+    "inversionPendiente": "Awaiting administration's reply",
+    "hayInversion": "Is there an investment proposal?",
+    "importe": "Amount (€)",
+    "costes": "Costs",
+    "concepto": "Item",
+    "condiciones": "Fee and conditions",
+    "excesoInversion": "⚠ Costs exceed the investment proposal by {{exceso}}. Management and Administration will be notified."
+  },
+  "tareas": {
+    "responderInversion": "Answer whether there is an investment proposal and record its details",
+    "revisarDatosOferta": "Review the registered offer data",
+    "prepararMaquinas": "Prepare the machines (serial no., coin changer, counter)",
+    "solicitarProveedores": "Request availability from suppliers (machines, peripherals, equipment)",
+    "crearPlanogramas": "Create the planograms and the workshop sheet",
+    "pedirCambio": "Request coin change from administration",
+    "altaClienteERP": "Register the customer in the ERP",
+    "prepararCambio": "Prepare the requested change",
+    "enviarOrdenInstalacion": "Send the installation order to the installer",
+    "confirmarInstalacion": "Confirm the completed installation",
+    "enviarAltaRuta": "Send the route assignment email (route, replenisher, technician)",
+    "rellenarERP": "Fill in the ERP and verify the setup"
+  },
+  "perifericos": {
+    "monedero": "Coin changer",
+    "lector_tarjeta": "Card reader",
+    "billetero": "Bill validator",
+    "llave_privada": "Private card/key",
+    "app_pago": "Payment app"
+  },
+  "equipamiento": {
+    "mueble": "Furniture",
+    "panelado": "Panelling",
+    "microondas": "Microwave",
+    "fuente_agua": "Water fountain",
+    "otro": "Other"
+  },
+  "canon": {
+    "sin_canon": "No fee",
+    "fijo": "Fixed fee",
+    "variable": "Variable fee",
+    "mixto": "Mixed fee"
+  },
+  "condiciones": {
+    "cafe_facturado": "Free coffee billed to the customer",
+    "combo": "Combo",
+    "gratuidad_diaria": "Daily free item per user",
+    "dia_gratis_anual": "One free-coffee day per year",
+    "lote_navidad": "Christmas hamper",
+    "otro": "Other"
+  },
+  "costes": {
+    "maquina": "Machine",
+    "periferico": "Peripheral",
+    "equipamiento": "Equipment",
+    "instalacion": "Installation"
+  },
   "common": {
     "loading": "Loading…",
     "save": "Save",
     "cancel": "Cancel",
-    "language": "Language"
+    "language": "Language",
+    "si": "Yes",
+    "no": "No"
   }
 }

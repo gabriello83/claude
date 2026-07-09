@@ -43,10 +43,139 @@
     "expedientesEnCurso": "Dossiers en cours",
     "sinTareas": "Vous n'avez aucune tâche en attente"
   },
+  "expedientes": {
+    "title": "Dossiers",
+    "nuevo": "+ Enregistrer une offre gagnée",
+    "empty": "Aucun dossier pour l'instant.",
+    "cliente": "Client",
+    "tipo": "Type",
+    "tipoOferta": "Offre",
+    "estado": "Statut",
+    "tareasPendientes": "Tâches en attente",
+    "creado": "Créé",
+    "tipos": {
+      "instalacion": "Installation",
+      "retirada": "Retrait",
+      "sustitucion": "Remplacement",
+      "cambio_planograma": "Changement de planogramme",
+      "subida_precios": "Hausse de prix"
+    },
+    "ofertas": { "publica": "Publique", "privada": "Privée" },
+    "estados": {
+      "registrado": "Enregistré",
+      "preparacion_tecnica": "Préparation technique",
+      "alta_administrativa": "Création administrative",
+      "instalacion": "Installation",
+      "alta_en_ruta": "Affectation à la tournée",
+      "completado": "Terminé",
+      "cancelado": "Annulé"
+    }
+  },
+  "nuevoExpediente": {
+    "title": "Enregistrer une offre gagnée",
+    "cliente": "Client et offre",
+    "nombreCliente": "Nom du client",
+    "tipoOferta": "Type d'offre",
+    "direccion": "Adresse d'installation",
+    "contacto": "Personne de contact",
+    "telefono": "Téléphone",
+    "email": "E-mail",
+    "fechaPrevista": "Date d'installation prévue",
+    "requisitos": "Exigences du site",
+    "requisitosHint": "Arrivée d'eau, électricité, accès…",
+    "maquinas": "Machines",
+    "modelo": "Modèle",
+    "estadoMaquina": "État",
+    "nueva": "Neuve",
+    "usada": "Occasion",
+    "perifericos": "Périphériques",
+    "telemetria": "Télémétrie",
+    "addMaquina": "+ Ajouter une machine",
+    "equipamiento": "Équipement supplémentaire",
+    "equipamientoAyuda": "Meubles, habillages, micro-ondes, fontaines… avec fournisseur et coût. Compte dans le contrôle d'investissement.",
+    "tipoEquipamiento": "Type",
+    "descripcion": "Description",
+    "proveedor": "Fournisseur",
+    "coste": "Coût (€)",
+    "addEquipamiento": "+ Ajouter un équipement",
+    "canon": "Redevance (informatif pour l'administration)",
+    "tipoCanon": "Type de redevance",
+    "importeFijo": "Montant fixe (€)",
+    "porcentaje": "% des ventes",
+    "notas": "Notes",
+    "condiciones": "Conditions spéciales",
+    "tipoCondicion": "Type",
+    "addCondicion": "+ Ajouter une condition",
+    "crear": "Créer le dossier"
+  },
+  "detalle": {
+    "avanzar": "Passer à l'étape suivante",
+    "tareas": "Tâches du dossier",
+    "inversion": "Proposition d'investissement",
+    "inversionImporte": "Proposition d'investissement : {{importe}}",
+    "sinInversion": "Aucune proposition d'investissement",
+    "inversionPendiente": "En attente de la réponse de l'administration",
+    "hayInversion": "Y a-t-il une proposition d'investissement ?",
+    "importe": "Montant (€)",
+    "costes": "Coûts",
+    "concepto": "Poste",
+    "condiciones": "Redevance et conditions",
+    "excesoInversion": "⚠ Les coûts dépassent la proposition d'investissement de {{exceso}}. La Direction et l'Administration seront prévenues."
+  },
+  "tareas": {
+    "responderInversion": "Indiquer s'il existe une proposition d'investissement et enregistrer ses détails",
+    "revisarDatosOferta": "Vérifier les données de l'offre enregistrée",
+    "prepararMaquinas": "Préparer les machines (n° de série, monnayeur, compteur)",
+    "solicitarProveedores": "Demander la disponibilité aux fournisseurs (machines, périphériques, équipement)",
+    "crearPlanogramas": "Créer les planogrammes et la fiche d'atelier",
+    "pedirCambio": "Demander le fonds de caisse à l'administration",
+    "altaClienteERP": "Créer le client dans l'ERP",
+    "prepararCambio": "Préparer le fonds de caisse demandé",
+    "enviarOrdenInstalacion": "Envoyer l'ordre d'installation à l'installateur",
+    "confirmarInstalacion": "Confirmer l'installation réalisée",
+    "enviarAltaRuta": "Envoyer l'e-mail d'affectation à la tournée (tournée, approvisionneur, technicien)",
+    "rellenarERP": "Remplir l'ERP et vérifier la création"
+  },
+  "perifericos": {
+    "monedero": "Monnayeur",
+    "lector_tarjeta": "Lecteur de carte",
+    "billetero": "Lecteur de billets",
+    "llave_privada": "Clé/carte privée",
+    "app_pago": "Appli de paiement"
+  },
+  "equipamiento": {
+    "mueble": "Meuble",
+    "panelado": "Habillage",
+    "microondas": "Micro-ondes",
+    "fuente_agua": "Fontaine à eau",
+    "otro": "Autre"
+  },
+  "canon": {
+    "sin_canon": "Sans redevance",
+    "fijo": "Redevance fixe",
+    "variable": "Redevance variable",
+    "mixto": "Redevance mixte"
+  },
+  "condiciones": {
+    "cafe_facturado": "Café gratuit facturé au client",
+    "combo": "Combo",
+    "gratuidad_diaria": "Gratuité quotidienne par utilisateur",
+    "dia_gratis_anual": "Une journée de café gratuit par an",
+    "lote_navidad": "Panier de Noël",
+    "otro": "Autre"
+  },
+  "costes": {
+    "maquina": "Machine",
+    "periferico": "Périphérique",
+    "equipamiento": "Équipement",
+    "instalacion": "Installation"
+  },
   "common": {
     "loading": "Chargement…",
     "save": "Enregistrer",
     "cancel": "Annuler",
-    "language": "Langue"
+    "language": "Langue",
+    "si": "Oui",
+    "no": "Non"
   }
 }

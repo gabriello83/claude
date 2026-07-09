@@ -102,3 +102,82 @@ th, td { text-align: left; padding: 0.5rem 0.7rem; border-bottom: 1px solid var(
 th { background: #eef2f6; position: sticky; top: 0; }
 
 .pantalla-carga { padding: 2rem; text-align: center; color: var(--muted); }
+
+/* Expedientes */
+.titulo-con-accion { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.boton-enlace {
+  background: var(--brand);
+  color: #fff;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+}
+.badge {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 0.15rem 0.7rem;
+  font-size: 0.8rem;
+  background: #e3e9ef;
+  color: var(--text);
+  white-space: nowrap;
+}
+.estado-registrado { background: #fff3cd; }
+.estado-preparacion_tecnica { background: #cfe2ff; }
+.estado-alta_administrativa { background: #e2d9f3; }
+.estado-instalacion { background: #d1e7dd; }
+.estado-alta_en_ruta { background: #d2f4ea; }
+.estado-completado { background: #198754; color: #fff; }
+.estado-cancelado { background: #6c757d; color: #fff; }
+
+.pasos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  list-style: none;
+  padding: 0;
+  margin: 0.8rem 0 1.2rem;
+}
+.pasos li {
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  background: #e3e9ef;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.pasos li.hecho { background: #d1e7dd; color: var(--text); }
+.pasos li.actual { background: var(--brand); color: #fff; }
+
+.alerta {
+  background: #f8d7da;
+  border: 1px solid #f1aeb5;
+  color: #58151c;
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  margin: 0.6rem 0;
+}
+
+.lista-tareas { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.4rem; }
+.lista-tareas li.hecha { color: var(--muted); text-decoration: line-through; }
+.lista-tareas .rol { margin-left: 0.5rem; font-size: 0.78rem; color: var(--muted); }
+
+/* Formularios */
+.formulario { display: flex; flex-direction: column; gap: 1.2rem; max-width: 900px; }
+.formulario fieldset {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--card);
+  padding: 1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.formulario legend { font-weight: 600; padding: 0 0.4rem; }
+.formulario label { display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.92rem; }
+.fila { display: flex; gap: 0.8rem; flex-wrap: wrap; align-items: flex-end; }
+.fila .crece { flex: 1 1 220px; }
+.tarjeta-linea { border: 1px dashed var(--border); border-radius: 8px; padding: 0.6rem; }
+.ayuda { color: var(--muted); font-size: 0.85rem; margin: 0; }
+button.secundario { background: #e3e9ef; color: var(--text); }
+button.secundario:hover { background: #d3dde6; }
+.form-inline { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: flex-end; }
+.form-inline label { display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.9rem; }

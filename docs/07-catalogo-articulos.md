@@ -48,7 +48,15 @@ acceso desde el entorno de desarrollo. Plan:
    `tenants/{tenantId}/productos/{codigo}.{png|jpg}` — el editor de
    planogramas resuelve la imagen por código y muestra un genérico si falta.
 2. El campo `imagenPath` del producto se rellena al subir la imagen.
-3. **Pendiente del cliente**: comprimir la carpeta en un ZIP y entregarla
-   (idealmente con el código de artículo en el nombre de cada fichero, que
-   es lo habitual en VendCloud). Con el ZIP se hará un script de carga
-   masiva a Storage que empareje imagen ↔ código y reporte los que no casen.
+3. El ZIP resultó demasiado grande para entregarlo, así que la carga se hace
+   **directamente desde el PC del cliente** con
+   `app/scripts/subir-imagenes.mjs`: recorre la carpeta local, sube cada
+   imagen a Storage, enlaza `imagenPath` en el producto por código de
+   artículo y genera un informe (subidas / ficheros sin producto / productos
+   sin imagen). Requiere una clave de cuenta de servicio del proyecto y
+   `npm install` en `app/`. Uso:
+
+   ```bash
+   node scripts/subir-imagenes.mjs --tenant=piloto --project=digivend-dev \
+     --dir="C:\...\Vencloud\Imagenes\Productos" --sa=serviceAccount.json
+   ```

@@ -13,6 +13,7 @@ export function Layout() {
         <span className="brand">{t("app.name")}</span>
         <nav>
           <NavLink to="/">{t("nav.dashboard")}</NavLink>
+          <NavLink to="/expedientes">{t("nav.expedientes")}</NavLink>
           <NavLink to="/catalogo">{t("nav.catalogo")}</NavLink>
         </nav>
         <div className="topbar-right">

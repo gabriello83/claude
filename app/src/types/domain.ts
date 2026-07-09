@@ -152,9 +152,20 @@ export interface LineaCoste {
   importe: number;
 }
 
+/** Tarea embebida en el expediente; "titulo" es una clave i18n */
+export interface TareaExpediente {
+  id: string;
+  rolResponsable: Rol;
+  titulo: string;
+  estado: "pendiente" | "hecha";
+  paso: EstadoExpediente;
+}
+
 export interface Expediente {
   id: string;
   clienteId: string;
+  /** Desnormalizado para listados */
+  clienteNombre: string;
   tipo: TipoExpediente;
   tipoOferta: TipoOferta;
   estado: EstadoExpediente;
@@ -162,6 +173,7 @@ export interface Expediente {
   condicionesEspeciales: CondicionEspecial[];
   propuestaInversion: PropuestaInversion | null;
   lineasCoste: LineaCoste[];
+  tareas: TareaExpediente[];
   /** Datos de instalación que rellena el comercial (q41) */
   instalacion: {
     fechaPrevista?: string;
@@ -224,16 +236,7 @@ export interface Planograma {
   selecciones: { numero: number; nombre: string; precio: number }[];
 }
 
-// ---- Tareas y auditoría ----
-
-export interface Tarea {
-  id: string;
-  expedienteId: string;
-  rolResponsable: Rol;
-  titulo: string;
-  estado: "pendiente" | "en_curso" | "hecha";
-  fechaLimite?: string;
-}
+// ---- Auditoría ----
 
 export interface EventoAuditoria {
   id: string;
