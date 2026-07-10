@@ -21,6 +21,20 @@ service cloud.firestore {
       return autenticado() && request.auth.token.roles.hasAny([rol, 'admin']);
     }
 
+    // Admin y Dirección ven todas las delegaciones (D31); tieneRol ya incluye admin
+    function veTodasDelegaciones() {
+      return tieneRol('direccion');
+    }
+
+    function miDelegacion() {
+      return request.auth.token.delegacionId;
+    }
+
+    function rolesImplicados() {
+      return tieneRol('comercial') || tieneRol('tecnico') ||
+             tieneRol('administracion') || tieneRol('operaciones');
+    }
+
     match /tenants/{tenantId} {
       // Config del tenant: leer cualquiera del tenant, escribir solo admin
       allow read: if esDelTenant(tenantId);
@@ -55,13 +69,29 @@ service cloud.firestore {
         allow delete: if esDelTenant(tenantId) && tieneRol('admin');
       }
 
-      match /expedientes/{expedienteId}/{doc=**} {
+      // Delegaciones de la empresa (D31): lectura general, alta/edición admin
+      match /delegaciones/{doc} {
         allow read: if esDelTenant(tenantId);
-        // v1 (Fase 2): escritura por los roles implicados; las transiciones
-        // de estado y los correos pasarán a Functions en la Fase 3.
-        allow write: if esDelTenant(tenantId) &&
-          (tieneRol('comercial') || tieneRol('tecnico') ||
-           tieneRol('administracion') || tieneRol('operaciones'));
+        allow write: if esDelTenant(tenantId) && tieneRol('admin');
+      }
+
+      // Expedientes con aislamiento por delegación (D31): cada usuario solo ve
+      // los de su delegación; admin/dirección ven todas. La lista debe filtrar
+      // por delegacionId porque estas reglas deniegan lo demás.
+      match /expedientes/{expedienteId} {
+        allow read: if esDelTenant(tenantId) &&
+          (veTodasDelegaciones() || resource.data.delegacionId == miDelegacion());
+        allow create: if esDelTenant(tenantId) && rolesImplicados() &&
+          (veTodasDelegaciones() || request.resource.data.delegacionId == miDelegacion());
+        allow update: if esDelTenant(tenantId) && rolesImplicados() &&
+          (veTodasDelegaciones() || resource.data.delegacionId == miDelegacion());
+        allow delete: if esDelTenant(tenantId) && tieneRol('admin');
+
+        // Subcolecciones (máquinas, equipamiento, planogramas): accesibles a los
+        // roles implicados del tenant. Se navegan tras leer el expediente padre.
+        match /{sub=**} {
+          allow read, write: if esDelTenant(tenantId) && rolesImplicados();
+        }
       }
 
       match /tarifas/{doc=**} {

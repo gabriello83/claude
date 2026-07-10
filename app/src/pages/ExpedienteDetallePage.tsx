@@ -14,7 +14,7 @@ import { useTranslation } from "react-i18next";
 import { col } from "@/lib/db";
 import { db } from "@/lib/firebase";
 import { useAuth, tieneRol } from "@/auth/AuthContext";
-import { encolarCorreo, type CorreoEncolado } from "@/lib/correos";
+import { encolarCorreo, encolarCorreoProveedor, type CorreoEncolado } from "@/lib/correos";
 import {
   avanzar,
   costeTotal,
@@ -153,10 +153,45 @@ export function ExpedienteDetallePage() {
       tipo,
       contexto: { ...contextoBase, ...extra },
       expedienteId: expediente.id,
+      delegacionId: expediente.delegacionId, // enrutado por delegación (D31)
       creadoPor: sesion.user.email ?? "",
     });
     if (!res.ok) setAvisoCorreo(t("correos.faltanDirecciones"));
     return res.ok;
+  };
+
+  // Correos a proveedor/fabricante: una máquina nueva por marca genera un
+  // correo al fabricante correspondiente (D31).
+  const enviarCorreoProveedor = async (tipo: "solicitud_proveedor" | "planograma_fabricante") => {
+    setAvisoCorreo(null);
+    const porMarca: Record<string, string[]> = {};
+    for (const m of maquinas) {
+      if (!m.nueva) continue; // solo se piden/envían a fábrica las nuevas
+      const mod = modelos.get(m.modeloId);
+      const marca = mod?.marca;
+      if (!marca) continue;
+      const linea = mod ? `${mod.marca} ${mod.modelo} (${mod.codigo})` : m.modeloId;
+      (porMarca[marca] ??= []).push(`- ${linea}`);
+    }
+    if (Object.keys(porMarca).length === 0) {
+      setAvisoCorreo(t("correos.sinMaquinasNuevas"));
+      return;
+    }
+    const contextoPorMarca: Record<string, Record<string, string>> = {};
+    for (const [marca, lineas] of Object.entries(porMarca)) {
+      contextoPorMarca[marca] = { ...contextoBase, maquinas: lineas.join("\n") };
+    }
+    const { sinFabricante } = await encolarCorreoProveedor({
+      tenantId: sesion.tenantId,
+      tipo,
+      porMarca: contextoPorMarca,
+      expedienteId: expediente.id,
+      delegacionId: expediente.delegacionId,
+      creadoPor: sesion.user.email ?? "",
+    });
+    if (sinFabricante.length) {
+      setAvisoCorreo(t("correos.sinFabricante", { marcas: sinFabricante.join(", ") }));
+    }
   };
 
   const enviarPeticionCambio = async () => {
@@ -294,6 +329,10 @@ export function ExpedienteDetallePage() {
             {correosDisponibles.map((tipo) =>
               tipo === "peticion_cambio" ? (
                 <button key={tipo} className="secundario" onClick={() => void enviarPeticionCambio()}>
+                  ✉ {t(`correos.tipos.${tipo}`)}
+                </button>
+              ) : tipo === "solicitud_proveedor" || tipo === "planograma_fabricante" ? (
+                <button key={tipo} className="secundario" onClick={() => void enviarCorreoProveedor(tipo)}>
                   ✉ {t(`correos.tipos.${tipo}`)}
                 </button>
               ) : (

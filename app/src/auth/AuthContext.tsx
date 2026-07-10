@@ -19,6 +19,8 @@ export interface SesionUsuario {
   /** Tenant y roles llegan como custom claims del token (propuesta técnica §2) */
   tenantId: string;
   roles: Rol[];
+  /** Delegación del usuario (D31); vacío en admin/dirección, que ven todas */
+  delegacionId: string;
 }
 
 interface AuthContextValue {
@@ -44,7 +46,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const token = await user.getIdTokenResult();
       const tenantId = (token.claims.tenantId as string) ?? "";
       const roles = (token.claims.roles as Rol[]) ?? [];
-      setSesion({ user, tenantId, roles });
+      const delegacionId = (token.claims.delegacionId as string) ?? "";
+      setSesion({ user, tenantId, roles, delegacionId });
       setCargando(false);
     });
   }, []);
@@ -73,4 +76,10 @@ export function tieneRol(sesion: SesionUsuario | null, ...roles: Rol[]): boolean
   // Dirección tiene visibilidad transversal de todos los pasos (D17)
   if (sesion.roles.includes("admin") || sesion.roles.includes("direccion")) return true;
   return roles.some((r) => sesion.roles.includes(r));
+}
+
+/** Admin y Dirección ven todas las delegaciones; el resto solo la suya (D31) */
+export function veTodasDelegaciones(sesion: SesionUsuario | null): boolean {
+  if (!sesion) return false;
+  return sesion.roles.includes("admin") || sesion.roles.includes("direccion");
 }

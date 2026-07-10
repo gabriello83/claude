@@ -17,7 +17,8 @@
     "catalogo": "Catalogue de machines",
     "tarifas": "Tarifs",
     "configuracion": "Paramètres",
-    "logout": "Déconnexion"
+    "logout": "Déconnexion",
+    "empresa": "Entreprise"
   },
   "roles": {
     "admin": "Administrateur",
@@ -118,7 +119,9 @@
     "clienteModo": "Client",
     "clienteNuevo": "Nouveau client",
     "clienteExistente": "Client existant",
-    "seleccionarCliente": "Sélectionner le client"
+    "seleccionarCliente": "Sélectionner le client",
+    "delegacion": "Agence",
+    "sinDelegaciones": "Aucune agence. Un administrateur doit les créer dans Entreprise avant d'enregistrer des dossiers."
   },
   "detalle": {
     "avanzar": "Passer à l'étape suivante",
@@ -209,11 +212,13 @@
       "orden_instalacion": "Ordre d'installation",
       "alta_ruta": "Affectation à la tournée",
       "exceso_inversion": "Alerte de dépassement d'investissement"
-    }
+    },
+    "sinMaquinasNuevas": "Aucune machine neuve dans ce dossier pour cet e-mail.",
+    "sinFabricante": "Aucun fabricant configuré pour : {{marcas}}. Ajoutez-les dans Entreprise → Fabricants."
   },
   "config": {
     "title": "Paramètres",
-    "direcciones": "Adresses e-mail par type",
+    "direcciones": "Adresses e-mail nationales (par défaut)",
     "para": "À (séparées par des virgules)",
     "cc": "CC",
     "plantillas": "Modèles d'e-mail",
@@ -286,5 +291,23 @@
     "language": "Langue",
     "si": "Oui",
     "no": "Non"
+  },
+  "empresa": {
+    "title": "Entreprise et agences",
+    "datos": "Données de l'entreprise",
+    "nombreEmpresa": "Nom de l'entreprise",
+    "delegaciones": "Agences",
+    "delegacionesAyuda": "Chaque agence peut avoir ses propres adresses (directeur, atelier, commercial, responsable). Ce que vous laissez vide est hérité des adresses nationales dans Paramètres.",
+    "editarCorreos": "Modifier les e-mails",
+    "nuevaDelegacion": "Nom de l'agence",
+    "addDelegacion": "+ Ajouter une agence",
+    "confirmarBorrarDeleg": "Supprimer cette agence ?",
+    "correosDe": "E-mails de",
+    "herencia": "Laissez vides les types qui doivent utiliser l'adresse nationale (ex. atelier national).",
+    "fabricantes": "Fabricants / fournisseurs",
+    "fabricantesAyuda": "Une adresse par fabricant. La demande au fournisseur et le planogramme d'usine sont envoyés à l'adresse du fabricant de chaque machine.",
+    "email": "E-mail",
+    "contacto": "Contact",
+    "addFabricante": "+ Ajouter / enregistrer"
   }
 }

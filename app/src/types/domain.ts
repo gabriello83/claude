@@ -21,13 +21,44 @@ export type TipoCorreo =
   | "alta_ruta"
   | "exceso_inversion";
 
+export interface Destinos {
+  para: string[];
+  cc: string[];
+}
+
 export interface TenantConfig {
   nombre: string;
+  /** Nombre comercial/fiscal de la empresa operadora (D31) */
+  nombreEmpresa?: string;
   idioma: Idioma;
-  /** Direcciones por tipo de correo: para y CC configurables (D23, q37) */
-  correos: Partial<Record<TipoCorreo, { para: string[]; cc: string[] }>>;
+  /**
+   * Direcciones NACIONALES por tipo de correo (D23, q37, D31). Sirven de
+   * valor por defecto cuando una delegación no define ese tipo (p. ej. taller
+   * nacional): la delegación hereda estas direcciones.
+   */
+  correos: Partial<Record<TipoCorreo, Destinos>>;
   /** Módulos licenciables activos (D19) */
   modulos: { planograma: boolean };
+}
+
+/** Delegación de la empresa (D31): correos propios que sobrescriben los nacionales */
+export interface Delegacion {
+  id: string;
+  nombre: string;
+  /** Sobrescrituras por tipo de correo; lo que no se define hereda del nivel nacional */
+  correos: Partial<Record<TipoCorreo, Destinos>>;
+}
+
+/**
+ * Fabricante/proveedor de máquinas con su correo (D31). Se enrutan por él la
+ * solicitud a proveedor y el planograma al fabricante. El ID del documento es
+ * la marca del catálogo (NECTA, AZKOYEN…) para casar por máquina.
+ */
+export interface Fabricante {
+  id: string;
+  marca: string;
+  email: string;
+  contacto?: string;
 }
 
 export interface Usuario {
@@ -35,6 +66,8 @@ export interface Usuario {
   email: string;
   nombre: string;
   roles: Rol[]; // multi-rol (D17)
+  /** Delegación a la que pertenece (D31); vacío en admin/dirección (ven todo) */
+  delegacionId?: string;
   activo: boolean;
 }
 
@@ -167,6 +200,9 @@ export interface Expediente {
   clienteId: string;
   /** Desnormalizado para listados */
   clienteNombre: string;
+  /** Delegación que gestiona el expediente (D31); base del aislamiento y del enrutado de correos internos */
+  delegacionId: string;
+  delegacionNombre: string;
   tipo: TipoExpediente;
   tipoOferta: TipoOferta;
   estado: EstadoExpediente;

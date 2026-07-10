@@ -9,6 +9,7 @@ import { ExpedientesPage } from "@/pages/ExpedientesPage";
 import { NuevoExpedientePage } from "@/pages/NuevoExpedientePage";
 import { ExpedienteDetallePage } from "@/pages/ExpedienteDetallePage";
 import { ConfiguracionPage } from "@/pages/ConfiguracionPage";
+import { EmpresaPage } from "@/pages/EmpresaPage";
 import { TarifasPage } from "@/pages/TarifasPage";
 import { PlanogramaPage } from "@/pages/PlanogramaPage";
 
@@ -33,6 +34,7 @@ export default function App() {
             <Route path="/expedientes/nuevo" element={<NuevoExpedientePage />} />
             <Route path="/expedientes/:id" element={<ExpedienteDetallePage />} />
             <Route path="/configuracion" element={<ConfiguracionPage />} />
+            <Route path="/empresa" element={<EmpresaPage />} />
             <Route path="/tarifas" element={<TarifasPage />} />
             <Route path="/expedientes/:id/planograma/:maquinaId" element={<PlanogramaPage />} />
           </Route>

@@ -17,7 +17,8 @@
     "catalogo": "Catalogo macchine",
     "tarifas": "Listini",
     "configuracion": "Impostazioni",
-    "logout": "Esci"
+    "logout": "Esci",
+    "empresa": "Azienda"
   },
   "roles": {
     "admin": "Amministratore",
@@ -118,7 +119,9 @@
     "clienteModo": "Cliente",
     "clienteNuevo": "Nuovo cliente",
     "clienteExistente": "Cliente esistente",
-    "seleccionarCliente": "Seleziona cliente"
+    "seleccionarCliente": "Seleziona cliente",
+    "delegacion": "Filiale",
+    "sinDelegaciones": "Nessuna filiale. Un amministratore deve crearle in Azienda prima di registrare pratiche."
   },
   "detalle": {
     "avanzar": "Passa alla fase successiva",
@@ -209,11 +212,13 @@
       "orden_instalacion": "Ordine di installazione",
       "alta_ruta": "Assegnazione al giro",
       "exceso_inversion": "Avviso superamento investimento"
-    }
+    },
+    "sinMaquinasNuevas": "Nessuna macchina nuova nella pratica per questa email.",
+    "sinFabricante": "Nessun produttore configurato per: {{marcas}}. Aggiungili in Azienda → Produttori."
   },
   "config": {
     "title": "Impostazioni",
-    "direcciones": "Indirizzi email per tipo",
+    "direcciones": "Indirizzi email nazionali (predefiniti)",
     "para": "A (separati da virgola)",
     "cc": "CC",
     "plantillas": "Modelli di email",
@@ -286,5 +291,23 @@
     "language": "Lingua",
     "si": "Sì",
     "no": "No"
+  },
+  "empresa": {
+    "title": "Azienda e filiali",
+    "datos": "Dati dell'azienda",
+    "nombreEmpresa": "Nome dell'azienda",
+    "delegaciones": "Filiali",
+    "delegacionesAyuda": "Ogni filiale può avere le proprie email (direttore, officina, commerciale, responsabile). Ciò che lasci vuoto viene ereditato dalle email nazionali in Impostazioni.",
+    "editarCorreos": "Modifica email",
+    "nuevaDelegacion": "Nome della filiale",
+    "addDelegacion": "+ Aggiungi filiale",
+    "confirmarBorrarDeleg": "Eliminare questa filiale?",
+    "correosDe": "Email di",
+    "herencia": "Lascia vuoti i tipi che devono usare l'email nazionale (es. officina nazionale).",
+    "fabricantes": "Produttori / fornitori",
+    "fabricantesAyuda": "Un'email per produttore. La richiesta al fornitore e il planogramma di fabbrica vengono inviati all'email del produttore di ogni macchina.",
+    "email": "Email",
+    "contacto": "Contatto",
+    "addFabricante": "+ Aggiungi / salva"
   }
 }

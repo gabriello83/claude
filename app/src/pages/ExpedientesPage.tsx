@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { onSnapshot, orderBy, query } from "firebase/firestore";
+import { onSnapshot, orderBy, query, where } from "firebase/firestore";
 import { useTranslation } from "react-i18next";
 import { col } from "@/lib/db";
-import { useAuth, tieneRol } from "@/auth/AuthContext";
+import { useAuth, tieneRol, veTodasDelegaciones } from "@/auth/AuthContext";
 import type { Expediente } from "@/types/domain";
 
 export function ExpedientesPage() {
@@ -13,7 +13,12 @@ export function ExpedientesPage() {
 
   useEffect(() => {
     if (!sesion) return;
-    const q = query(col.expedientes(sesion.tenantId), orderBy("creadoEn", "desc"));
+    // Aislamiento por delegación (D31): admin/dirección ven todas; el resto,
+    // solo la suya. El filtro es obligatorio porque las reglas deniegan lo demás.
+    const base = col.expedientes(sesion.tenantId);
+    const q = veTodasDelegaciones(sesion)
+      ? query(base, orderBy("creadoEn", "desc"))
+      : query(base, where("delegacionId", "==", sesion.delegacionId), orderBy("creadoEn", "desc"));
     return onSnapshot(q, (snap) =>
       setExpedientes(snap.docs.map((d) => ({ id: d.id, ...d.data() }) as Expediente)),
     );

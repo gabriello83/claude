@@ -17,7 +17,8 @@
     "catalogo": "Catálogo de máquinas",
     "tarifas": "Tarifas",
     "configuracion": "Configuración",
-    "logout": "Cerrar sesión"
+    "logout": "Cerrar sesión",
+    "empresa": "Empresa"
   },
   "roles": {
     "admin": "Administrador",
@@ -118,7 +119,9 @@
     "clienteModo": "Cliente",
     "clienteNuevo": "Cliente nuevo",
     "clienteExistente": "Cliente existente",
-    "seleccionarCliente": "Seleccionar cliente"
+    "seleccionarCliente": "Seleccionar cliente",
+    "delegacion": "Delegación",
+    "sinDelegaciones": "No hay delegaciones. Un administrador debe crearlas en Empresa antes de registrar expedientes."
   },
   "detalle": {
     "avanzar": "Avanzar al siguiente paso",
@@ -209,11 +212,13 @@
       "orden_instalacion": "Orden de instalación",
       "alta_ruta": "Alta en ruta",
       "exceso_inversion": "Aviso de exceso de inversión"
-    }
+    },
+    "sinMaquinasNuevas": "No hay máquinas nuevas en el expediente para este correo.",
+    "sinFabricante": "Sin fabricante configurado para: {{marcas}}. Añádelos en Empresa → Fabricantes."
   },
   "config": {
     "title": "Configuración",
-    "direcciones": "Direcciones de correo por tipo",
+    "direcciones": "Direcciones de correo nacionales (por defecto)",
     "para": "Para (separadas por coma)",
     "cc": "CC",
     "plantillas": "Plantillas de correo",
@@ -286,5 +291,23 @@
     "language": "Idioma",
     "si": "Sí",
     "no": "No"
+  },
+  "empresa": {
+    "title": "Empresa y delegaciones",
+    "datos": "Datos de la empresa",
+    "nombreEmpresa": "Nombre de la empresa",
+    "delegaciones": "Delegaciones",
+    "delegacionesAyuda": "Cada delegación puede tener sus propios correos (director, taller, comercial, responsable). Lo que no definas aquí se hereda de los correos nacionales de Configuración.",
+    "editarCorreos": "Editar correos",
+    "nuevaDelegacion": "Nombre de la delegación",
+    "addDelegacion": "+ Añadir delegación",
+    "confirmarBorrarDeleg": "¿Borrar esta delegación?",
+    "correosDe": "Correos de",
+    "herencia": "Deja en blanco los tipos que deban usar el correo nacional (p. ej. taller nacional).",
+    "fabricantes": "Fabricantes / proveedores",
+    "fabricantesAyuda": "Correo por fabricante. La solicitud a proveedor y el planograma al fabricante se envían al correo del fabricante de cada máquina.",
+    "email": "Correo",
+    "contacto": "Contacto",
+    "addFabricante": "+ Añadir / guardar"
   }
 }

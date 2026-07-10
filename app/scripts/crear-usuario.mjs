@@ -57,8 +57,13 @@ try {
   console.log(`Usuario creado: ${email} (${user.uid})`);
 }
 
-await auth.setCustomUserClaims(user.uid, { tenantId: tenant, roles });
-console.log(`Claims asignados: tenantId=${tenant}, roles=${roles.join(",")}`);
+// Delegación del usuario (D31): opcional; admin/dirección ven todas las delegaciones
+const delegacion = args.delegacion ?? "";
+const claims = { tenantId: tenant, roles, ...(delegacion ? { delegacionId: delegacion } : {}) };
+await auth.setCustomUserClaims(user.uid, claims);
+console.log(
+  `Claims asignados: tenantId=${tenant}, roles=${roles.join(",")}${delegacion ? `, delegacionId=${delegacion}` : ""}`,
+);
 
 // Documento del tenant (merge: no pisa configuración existente)
 await db.doc(`tenants/${tenant}`).set(
@@ -75,6 +80,7 @@ await db.doc(`tenants/${tenant}/usuarios/${user.uid}`).set({
   email,
   nombre: args.nombre ?? email,
   roles,
+  ...(delegacion ? { delegacionId: delegacion } : {}),
   activo: true,
 });
 

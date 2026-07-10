@@ -226,26 +226,50 @@ export function plantillaDefecto(idioma: Idioma, tipo: TipoCorreo): Plantilla {
  * idioma del operador, D7) y lo encola. Devuelve error si el tipo no tiene
  * direcciones configuradas.
  */
+async function cargarPlantilla(
+  tenantId: string,
+  tipo: TipoCorreo,
+  idioma: Idioma,
+): Promise<Plantilla> {
+  const snap = await getDoc(doc(db, "tenants", tenantId, "plantillasCorreo", tipo));
+  return snap.exists() ? (snap.data() as Plantilla) : plantillaDefecto(idioma, tipo);
+}
+
+async function encolar(
+  tenantId: string,
+  correo: CorreoEncolado,
+): Promise<void> {
+  await addDoc(collection(db, "tenants", tenantId, "mail"), correo);
+}
+
+/**
+ * Correo interno de coordinación. Enruta por delegación con herencia del
+ * nivel nacional (D31): si la delegación no define ese tipo (p. ej. taller
+ * nacional), usa las direcciones nacionales del tenant.
+ */
 export async function encolarCorreo(opts: {
   tenantId: string;
   tipo: TipoCorreo;
   contexto: Record<string, string>;
   expedienteId?: string;
+  delegacionId?: string;
   creadoPor: string;
 }): Promise<{ ok: true } | { ok: false; motivo: "sin_direcciones" }> {
-  const { tenantId, tipo, contexto, expedienteId, creadoPor } = opts;
+  const { tenantId, tipo, contexto, expedienteId, delegacionId, creadoPor } = opts;
 
   const tenantSnap = await getDoc(doc(db, "tenants", tenantId));
   const config = (tenantSnap.data() ?? {}) as Partial<TenantConfig>;
-  const destinos = config.correos?.[tipo];
+
+  let destinos = config.correos?.[tipo];
+  if (delegacionId) {
+    const delSnap = await getDoc(doc(db, "tenants", tenantId, "delegaciones", delegacionId));
+    const delDestinos = (delSnap.data()?.correos as TenantConfig["correos"] | undefined)?.[tipo];
+    if (delDestinos?.para?.length) destinos = delDestinos; // la delegación sobrescribe
+  }
   if (!destinos?.para?.length) return { ok: false, motivo: "sin_direcciones" };
 
-  const plantillaSnap = await getDoc(doc(db, "tenants", tenantId, "plantillasCorreo", tipo));
-  const plantilla = plantillaSnap.exists()
-    ? (plantillaSnap.data() as Plantilla)
-    : plantillaDefecto(config.idioma ?? "es", tipo);
-
-  const correo: CorreoEncolado = {
+  const plantilla = await cargarPlantilla(tenantId, tipo, config.idioma ?? "es");
+  await encolar(tenantId, {
     tipo,
     para: destinos.para,
     cc: destinos.cc ?? [],
@@ -255,7 +279,60 @@ export async function encolarCorreo(opts: {
     estado: "pendiente",
     creadoEn: new Date().toISOString(),
     creadoPor,
-  };
-  await addDoc(collection(db, "tenants", tenantId, "mail"), correo);
+  });
   return { ok: true };
+}
+
+/**
+ * Correo a proveedor/fabricante (solicitud a proveedor, planograma al
+ * fabricante). Enruta por la marca de la máquina (D31): busca el fabricante
+ * en /tenants/{t}/fabricantes/{marca} y usa su email. Pone en CC la dirección
+ * de la delegación/nacional para ese tipo, para que compras quede en copia.
+ * Devuelve las marcas que no tienen fabricante configurado.
+ */
+export async function encolarCorreoProveedor(opts: {
+  tenantId: string;
+  tipo: "solicitud_proveedor" | "planograma_fabricante";
+  /** Contexto por marca: cada marca genera su propio correo con sus máquinas */
+  porMarca: Record<string, Record<string, string>>;
+  expedienteId?: string;
+  delegacionId?: string;
+  creadoPor: string;
+}): Promise<{ enviadas: string[]; sinFabricante: string[] }> {
+  const { tenantId, tipo, porMarca, expedienteId, delegacionId, creadoPor } = opts;
+  const tenantSnap = await getDoc(doc(db, "tenants", tenantId));
+  const config = (tenantSnap.data() ?? {}) as Partial<TenantConfig>;
+  const plantilla = await cargarPlantilla(tenantId, tipo, config.idioma ?? "es");
+
+  // CC = direcciones internas de ese tipo (delegación o nacional)
+  let cc = config.correos?.[tipo]?.cc ?? config.correos?.[tipo]?.para ?? [];
+  if (delegacionId) {
+    const delSnap = await getDoc(doc(db, "tenants", tenantId, "delegaciones", delegacionId));
+    const delDestinos = (delSnap.data()?.correos as TenantConfig["correos"] | undefined)?.[tipo];
+    if (delDestinos?.para?.length) cc = delDestinos.cc?.length ? delDestinos.cc : delDestinos.para;
+  }
+
+  const enviadas: string[] = [];
+  const sinFabricante: string[] = [];
+  for (const [marca, contexto] of Object.entries(porMarca)) {
+    const fabSnap = await getDoc(doc(db, "tenants", tenantId, "fabricantes", marca));
+    const email = fabSnap.data()?.email as string | undefined;
+    if (!email) {
+      sinFabricante.push(marca);
+      continue;
+    }
+    await encolar(tenantId, {
+      tipo,
+      para: [email],
+      cc,
+      asunto: renderPlantilla(plantilla.asunto, contexto),
+      cuerpo: renderPlantilla(plantilla.cuerpo, contexto),
+      ...(expedienteId ? { expedienteId } : {}),
+      estado: "pendiente",
+      creadoEn: new Date().toISOString(),
+      creadoPor,
+    });
+    enviadas.push(marca);
+  }
+  return { enviadas, sinFabricante };
 }

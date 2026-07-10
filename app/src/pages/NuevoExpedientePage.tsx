@@ -8,6 +8,7 @@ import { useAuth } from "@/auth/AuthContext";
 import type {
   Canon,
   Cliente,
+  Delegacion,
   CondicionEspecial,
   Equipamiento,
   MaquinaExpediente,
@@ -67,6 +68,10 @@ export function NuevoExpedientePage() {
   const [clientes, setClientes] = useState<(Cliente & { id: string })[]>([]);
   const [clienteExistenteId, setClienteExistenteId] = useState("");
 
+  // Delegación que gestiona el expediente (D31)
+  const [delegaciones, setDelegaciones] = useState<Delegacion[]>([]);
+  const [delegacionId, setDelegacionId] = useState("");
+
   // Cliente
   const [nombre, setNombre] = useState("");
   const [direccion, setDireccion] = useState("");
@@ -97,6 +102,13 @@ export function NuevoExpedientePage() {
     getDocs(col.clientes(sesion.tenantId)).then((snap) =>
       setClientes(snap.docs.map((d) => ({ id: d.id, ...d.data() }) as Cliente & { id: string })),
     );
+    getDocs(col.delegaciones(sesion.tenantId)).then((snap) => {
+      const lista = snap.docs.map((d) => ({ id: d.id, ...d.data() }) as Delegacion);
+      setDelegaciones(lista);
+      // Preselecciona la delegación del usuario, o la única si solo hay una
+      if (sesion.delegacionId) setDelegacionId(sesion.delegacionId);
+      else if (lista.length === 1) setDelegacionId(lista[0].id);
+    });
   }, [sesion]);
 
   const cambiarTipo = (tipo: TipoExpediente) => {
@@ -163,6 +175,8 @@ export function NuevoExpedientePage() {
         expediente: {
           tipo: tipoExp,
           tipoOferta,
+          delegacionId,
+          delegacionNombre: delegaciones.find((d) => d.id === delegacionId)?.nombre ?? "",
           canon,
           condicionesEspeciales: condiciones,
           propuestaInversion: null,
@@ -189,6 +203,19 @@ export function NuevoExpedientePage() {
         <fieldset>
           <legend>{t("nuevoExpediente.cliente")}</legend>
           <div className="fila">
+            <label>
+              {t("nuevoExpediente.delegacion")}
+              <select value={delegacionId} onChange={(e) => setDelegacionId(e.target.value)} required>
+                <option value="" disabled>
+                  —
+                </option>
+                {delegaciones.map((d) => (
+                  <option key={d.id} value={d.id}>
+                    {d.nombre}
+                  </option>
+                ))}
+              </select>
+            </label>
             <label>
               {t("nuevoExpediente.tipoExpediente")}
               <select value={tipoExp} onChange={(e) => cambiarTipo(e.target.value as TipoExpediente)}>
@@ -461,10 +488,12 @@ export function NuevoExpedientePage() {
           </button>
         </fieldset>
 
+        {delegaciones.length === 0 && <p className="alerta">{t("nuevoExpediente.sinDelegaciones")}</p>}
         <button
           type="submit"
           disabled={
             guardando ||
+            !delegacionId ||
             (clienteModo === "nuevo" ? !nombre || !direccion : !clienteExistenteId)
           }
         >

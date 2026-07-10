@@ -17,7 +17,8 @@
     "catalogo": "Machine catalogue",
     "tarifas": "Price lists",
     "configuracion": "Settings",
-    "logout": "Sign out"
+    "logout": "Sign out",
+    "empresa": "Company"
   },
   "roles": {
     "admin": "Administrator",
@@ -118,7 +119,9 @@
     "clienteModo": "Customer",
     "clienteNuevo": "New customer",
     "clienteExistente": "Existing customer",
-    "seleccionarCliente": "Select customer"
+    "seleccionarCliente": "Select customer",
+    "delegacion": "Branch",
+    "sinDelegaciones": "No branches yet. An administrator must create them in Company before registering work orders."
   },
   "detalle": {
     "avanzar": "Move to next step",
@@ -209,11 +212,13 @@
       "orden_instalacion": "Installation order",
       "alta_ruta": "Route assignment",
       "exceso_inversion": "Investment excess alert"
-    }
+    },
+    "sinMaquinasNuevas": "No new machines in this work order for this email.",
+    "sinFabricante": "No manufacturer configured for: {{marcas}}. Add them in Company → Manufacturers."
   },
   "config": {
     "title": "Settings",
-    "direcciones": "Email addresses per type",
+    "direcciones": "National email addresses (defaults)",
     "para": "To (comma separated)",
     "cc": "CC",
     "plantillas": "Email templates",
@@ -286,5 +291,23 @@
     "language": "Language",
     "si": "Yes",
     "no": "No"
+  },
+  "empresa": {
+    "title": "Company and branches",
+    "datos": "Company details",
+    "nombreEmpresa": "Company name",
+    "delegaciones": "Branches",
+    "delegacionesAyuda": "Each branch can have its own email addresses (manager, workshop, sales, supervisor). What you leave empty is inherited from the national addresses in Settings.",
+    "editarCorreos": "Edit emails",
+    "nuevaDelegacion": "Branch name",
+    "addDelegacion": "+ Add branch",
+    "confirmarBorrarDeleg": "Delete this branch?",
+    "correosDe": "Emails of",
+    "herencia": "Leave blank the types that should use the national address (e.g. national workshop).",
+    "fabricantes": "Manufacturers / suppliers",
+    "fabricantesAyuda": "One email per manufacturer. Supplier requests and factory planograms are sent to each machine's manufacturer email.",
+    "email": "Email",
+    "contacto": "Contact",
+    "addFabricante": "+ Add / save"
   }
 }

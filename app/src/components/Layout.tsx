@@ -17,7 +17,10 @@ export function Layout() {
           <NavLink to="/tarifas">{t("nav.tarifas")}</NavLink>
           <NavLink to="/catalogo">{t("nav.catalogo")}</NavLink>
           {sesion?.roles.includes("admin") && (
-            <NavLink to="/configuracion">{t("nav.configuracion")}</NavLink>
+            <>
+              <NavLink to="/empresa">{t("nav.empresa")}</NavLink>
+              <NavLink to="/configuracion">{t("nav.configuracion")}</NavLink>
+            </>
           )}
         </nav>
         <div className="topbar-right">

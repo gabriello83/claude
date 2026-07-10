@@ -90,10 +90,17 @@ export const onExpedienteEscrito = onDocumentWritten(
     const { tenantId, expedienteId } = event.params;
     const tenantSnap = await db.doc(`tenants/${tenantId}`).get();
     const config = tenantSnap.data() ?? {};
-    const destinos = config.correos?.exceso_inversion;
+
+    // Enrutado por delegación con herencia del nivel nacional (D31)
+    let destinos = config.correos?.exceso_inversion;
+    if (expediente.delegacionId) {
+      const delSnap = await db.doc(`tenants/${tenantId}/delegaciones/${expediente.delegacionId}`).get();
+      const delDest = delSnap.data()?.correos?.exceso_inversion;
+      if (delDest?.para?.length) destinos = delDest;
+    }
     if (!destinos?.para?.length) {
       logger.warn(
-        `Exceso de inversión en ${expedienteId} pero el tenant ${tenantId} no tiene direcciones para exceso_inversion`,
+        `Exceso de inversión en ${expedienteId} pero no hay direcciones para exceso_inversion (tenant ${tenantId})`,
       );
       return;
     }

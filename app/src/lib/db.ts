@@ -29,6 +29,8 @@ export const col = {
     collection(db, "tenants", t, "expedientes", e, "equipamiento"),
   modelosMaquina: (t: string) => collection(db, "tenants", t, "modelosMaquina"),
   productos: (t: string) => collection(db, "tenants", t, "productos"),
+  delegaciones: (t: string) => collection(db, "tenants", t, "delegaciones"),
+  fabricantes: (t: string) => collection(db, "tenants", t, "fabricantes"),
 };
 
 export interface NuevoExpedienteInput {
