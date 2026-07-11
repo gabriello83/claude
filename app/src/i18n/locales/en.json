@@ -45,7 +45,13 @@
     "title": "Dashboard",
     "misTareas": "My pending tasks",
     "expedientesEnCurso": "Work orders in progress",
-    "sinTareas": "You have no pending tasks"
+    "sinTareas": "You have no pending tasks",
+    "enCurso": "In progress",
+    "excesos": "Investment excesses",
+    "atascados": "Over {{dias}} days",
+    "completados30": "Completed (30 days)",
+    "dias": "Days",
+    "coste": "Cost"
   },
   "expedientes": {
     "title": "Work orders",

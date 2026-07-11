@@ -45,7 +45,13 @@
     "title": "Panel de control",
     "misTareas": "Mis tareas pendientes",
     "expedientesEnCurso": "Expedientes en curso",
-    "sinTareas": "No tienes tareas pendientes"
+    "sinTareas": "No tienes tareas pendientes",
+    "enCurso": "En curso",
+    "excesos": "Excesos de inversión",
+    "atascados": "Más de {{dias}} días",
+    "completados30": "Completados (30 días)",
+    "dias": "Días",
+    "coste": "Coste"
   },
   "expedientes": {
     "title": "Expedientes",

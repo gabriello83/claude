@@ -85,6 +85,27 @@ input, select {
 main { padding: 1.4rem; max-width: 1100px; margin: 0 auto; }
 
 /* Dashboard */
+.kpis { display: flex; gap: 0.8rem; flex-wrap: wrap; margin: 0.6rem 0 1rem; }
+.kpi {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.7rem 1.1rem;
+  min-width: 130px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  text-decoration: none;
+  color: var(--text);
+}
+.kpi-valor { font-size: 1.7rem; font-weight: 700; color: var(--brand); }
+.kpi-nombre { font-size: 0.82rem; color: var(--muted); }
+.kpi-alerta { border-color: #f1aeb5; background: #fdf3f4; }
+.kpi-alerta .kpi-valor { color: var(--error); }
+.kpi-aviso { border-color: #ffe69c; background: #fffaf0; }
+.kpi-aviso .kpi-valor { color: #997404; }
+.dias-atascado { color: var(--error); font-weight: 700; }
+
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
 .card {
   background: var(--card);

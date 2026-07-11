@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "test": "vitest run",
     "preview": "vite preview",
     "seed:catalogo": "node scripts/seed-catalogo.mjs",
     "seed:articulos": "node scripts/seed-articulos.mjs"
@@ -25,6 +26,7 @@
     "@vitejs/plugin-react": "^4.3.4",
     "firebase-admin": "^13.0.1",
     "typescript": "^5.6.3",
-    "vite": "^5.4.11"
+    "vite": "^5.4.11",
+    "vitest": "^4.1.10"
   }
 }

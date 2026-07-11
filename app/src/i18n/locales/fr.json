@@ -45,7 +45,13 @@
     "title": "Tableau de bord",
     "misTareas": "Mes tâches en attente",
     "expedientesEnCurso": "Dossiers en cours",
-    "sinTareas": "Vous n'avez aucune tâche en attente"
+    "sinTareas": "Vous n'avez aucune tâche en attente",
+    "enCurso": "En cours",
+    "excesos": "Dépassements d'investissement",
+    "atascados": "Plus de {{dias}} jours",
+    "completados30": "Terminés (30 jours)",
+    "dias": "Jours",
+    "coste": "Coût"
   },
   "expedientes": {
     "title": "Dossiers",

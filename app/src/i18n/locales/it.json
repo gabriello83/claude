@@ -45,7 +45,13 @@
     "title": "Pannello di controllo",
     "misTareas": "Le mie attività in sospeso",
     "expedientesEnCurso": "Pratiche in corso",
-    "sinTareas": "Non hai attività in sospeso"
+    "sinTareas": "Non hai attività in sospeso",
+    "enCurso": "In corso",
+    "excesos": "Superamenti investimento",
+    "atascados": "Oltre {{dias}} giorni",
+    "completados30": "Completate (30 giorni)",
+    "dias": "Giorni",
+    "coste": "Costo"
   },
   "expedientes": {
     "title": "Pratiche",

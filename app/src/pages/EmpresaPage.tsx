@@ -3,6 +3,7 @@ import {
   addDoc,
   deleteDoc,
   doc,
+  getDoc,
   getDocs,
   onSnapshot,
   setDoc,
@@ -47,7 +48,6 @@ export function EmpresaPage() {
   useEffect(() => {
     if (!sesion) return;
     const t0 = sesion.tenantId;
-    getDocs(col.delegaciones(t0)); // warm
     const unsubDel = onSnapshot(col.delegaciones(t0), (snap) =>
       setDelegaciones(snap.docs.map((d) => ({ id: d.id, ...d.data() }) as Delegacion)),
     );
@@ -62,8 +62,8 @@ export function EmpresaPage() {
       });
       setMarcasCatalogo([...marcas].sort());
     });
-    import("firebase/firestore").then(({ getDoc, doc: d }) =>
-      getDoc(d(db, "tenants", t0)).then((s) => setNombreEmpresa((s.data()?.nombreEmpresa as string) ?? "")),
+    getDoc(doc(db, "tenants", t0)).then((s) =>
+      setNombreEmpresa((s.data()?.nombreEmpresa as string) ?? ""),
     );
     return () => {
       unsubDel();
