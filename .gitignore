@@ -1,3 +1,0 @@
-# Datos de cliente: no subir a git
-airbus/ventas/*
-!airbus/ventas/.gitkeep
